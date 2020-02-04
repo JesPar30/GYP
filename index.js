@@ -151,9 +151,7 @@ ws.cell(2, 8)
   .style(style)
   .style({font: {size: 14}});
  
-  wb.write(`CC PYME ${req.body.nombre}.xlsx`);
-  console.log('File created!');
-
+  wb.write(`CC PYME ${req.body.nombre}.xlsx`); //creacion del archivo
 
   const output = `
     <h3>Detalle</h3>
@@ -195,11 +193,8 @@ ws.cell(2, 8)
       if (error) {
           return console.log(error);
       }
-      console.log('Message sent: %s', info.messageId);   
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-      fs.unlinkSync(`CC PYME ${req.body.nombre}.xlsx`)
-        console.log('File deleted!');
-      res.render('inicio', {msg:'Email has been sent'});
+      fs.unlinkSync(`CC PYME ${req.body.nombre}.xlsx`)//Archivo eliminado
+      res.render('inicio', `<script>alert("CC PYME ${req.body.nombre}.xlsx Enviado con Exito")</script>`);
   });
 
 
