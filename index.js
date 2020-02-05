@@ -194,9 +194,10 @@ ws.cell(2, 8)
           return console.log(error);
       }
       fs.unlinkSync(`CC PYME ${req.body.nombre}.xlsx`)//Archivo eliminado
-      res.render('inicio', `<script>alert("CC PYME ${req.body.nombre}.xlsx Enviado con Exito")</script>`);
+      res.send(`<h1>"CC PYME ${req.body.nombre}.xlsx Enviado con Exito"</h1>`)
+      
   });
-
+  res.render('inicio');
 
 
 
