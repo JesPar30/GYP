@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const POP3Strategy = require('passport-pop3')
 const methodOverride = require('method-override')
+const cookieParser = require('cookie-parser');
 
 let userr = ''
 let passs = ''
@@ -39,6 +40,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 passport.use(pop);
 app.use(methodOverride('_method'))
+app.use(cookieParser());
 
 //Settings
 app.set('port', process.env.PORT || 3000)
@@ -225,15 +227,15 @@ app.delete('/logout', (req, res) => {
 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return next()
+        return next()
     }
-  
+
     res.redirect('/')
-  }
-  
-  function checkNotAuthenticated(req, res, next) {
+}
+
+function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return res.redirect('/inicio')
+        return res.redirect('/inicio')
     }
     next()
 }
