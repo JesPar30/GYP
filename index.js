@@ -16,8 +16,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 110,
-    enabletls: false,
+    port: 995,
+    enabletls: true,
     usernameField: userr,
     passwordField: passs,
 }
@@ -75,13 +75,12 @@ app.post('/inicio', function (req, res) {
 
     // Add Worksheets to the workbook
     var ws = wb.addWorksheet('Sheet 1');
-    var ws2 = wb.addWorksheet('Sheet 2');
 
     // Create a reusable style
     var style = wb.createStyle({
         font: {
             color: 'black',
-            size: 12,
+            size: 10,
         },
         numberFormat: '$#,##0.00; ($#,##0.00); -',
     });
@@ -158,22 +157,65 @@ app.post('/inicio', function (req, res) {
 
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 1)
-        .string(req.body.nombre)
+        .string(req.body.promotor)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 2)
+        .string(req.body.n_sucursal)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 3)
+        .string(req.body.cuit)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 4)
+        .string(req.body.razon)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 5)
+        .string(req.body.cond_iva)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 6)
+        .string(req.body.cond_iibb)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 7)
+        .string(req.body.telefono)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 8)
+        .string(req.body.email)
         .style(style);
 
     // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    ws.cell(2, 8)
-        .string(req.body.email)
-        .style(style)
-        .style({ font: { size: 14 } });
+    ws.cell(2, 9)
+        .string(req.body.fac_anual)
+        .style(style);
+    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
+    ws.cell(2, 10)
+        .string(req.body.ult_cierre)
+        .style(style);
+    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
+    ws.cell(2, 11)
+        .string(req.body.DNI + '/' + req.body.nombre + ' ' + req.body.apellido)
+        .style(style);
+    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
+    ws.cell(2, 12)
+        .string(req.body.porc_part)
+        .style(style);
 
-    wb.write(`CC PYME ${req.body.nombre}.xlsx`); //creacion del archivo
+
+
+
+    wb.write(`CC PYME ${req.body.razon}.xlsx`); //creacion del archivo
 
     const output = `
     <h3>Detalle</h3>
     <ul>  
-      <li>Nombre: ${req.body.nombre}</li>
-      <li>Email: ${req.body.email}</li>
+      <li>Promotor: ${req.body.promotor}</li>
+      <li>Razon Social: ${req.body.razon}</li>
+      <li>CUIT: ${req.body.cuit}</li>
     </ul>
   `;
 
@@ -183,8 +225,8 @@ app.post('/inicio', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
-            pass: '343434jesus.'  // generated ethereal password
+            user: 'cartas@railcom.com.ar', // generated ethereal user
+            pass: 'Cartas159.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -193,14 +235,14 @@ app.post('/inicio', function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION PYME <jesus.parra@railcom.com.ar>', // sender address
+        from: 'GESTION PYME <cartas@railcom.com.ar>', // sender address
         to: `${req.body.email}`, // list of receivers
         subject: `CC PYME ${req.body.nombre}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
         attachments:
         {
-            path: `CC PYME ${req.body.nombre}.xlsx`
+            path: `CC PYME ${req.body.razon}.xlsx`
         }
     };
 
@@ -209,9 +251,7 @@ app.post('/inicio', function (req, res) {
         if (error) {
             return console.log(error);
         }
-        fs.unlinkSync(`CC PYME ${req.body.nombre}.xlsx`)//Archivo eliminado
-        res.send(`<h1>"CC PYME ${req.body.nombre}.xlsx Enviado con Exito"</h1>`)
-
+        fs.unlinkSync(`CC PYME ${req.body.razon}.xlsx`)//Archivo eliminado
     });
     res.redirect('inicio');
 
