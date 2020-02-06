@@ -184,7 +184,7 @@ app.post('/inicio', function (req, res) {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'jesus.parra@railcom.com.ar', // generated ethereal user
-            pass: '343434j.'  // generated ethereal password
+            pass: '343434jesus.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
