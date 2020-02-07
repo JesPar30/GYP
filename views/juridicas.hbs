@@ -1,0 +1,194 @@
+{{>header}}
+<!-- Contact Us Section -->
+<section class="Material-contact-section section-padding section-dark">
+	<div class="container-fluid">
+		<!-- contact form -->
+		<div class="d-flex justify-content-center h-100">
+			{{!-- PARTE IZQUIERDA --}}
+			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
+				<form action="/juridicas" class="shake" role="form" method="POST" id="contactForm" name="contact-form"
+					data-toggle="validator" enctype="multipart/form-data">
+					<fieldset>
+					<!-- PROMOTOR RAILCOM -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="name">PROMOTOR RAILCOM</label>
+						<select id="promotor" name="promotor" class="form-control"></select>
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- RAZON SOCIAL -->
+					<div class="form-group label-floating">
+						<label class="control-label">RAZON SOCIAL</label>
+						<input class="form-control" id="msg_subject" type="text" name="razon" required
+							data-error="Please enter your message subject">
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- CUIT -->
+					<div class="form-group label-floating">
+						<label class="control-label">CUIT</label>
+						<input class="form-control" id="cuit" type="number" name="cuit" required
+							data-error="Please enter your message subject">
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- N° DE SUCURSAL -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="name">N° DE SUCURSAL</label>
+						<input class="form-control" id="n_sucursal" type="number" name="n_sucursal" required
+							data-error="Please enter your name">
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- CONDICIÓN ANTE IVA E IIGG (RI, MT, EX) -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="name">CONDICIÓN ANTE IVA E IIGG (RI, MT, EX)</label>
+						<select id="cond_iva" name="cond_iva" class="form-control">
+							<option value="RI">RI</option>
+							<option value="MT">MT</option>
+							<option value="EX">EX</option>
+						</select>
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS) -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="name">CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS)</label>
+						<select id="cond_iibb" name="cond_iibb" class="form-control">
+							<option value="LOCAL">LOCAL</option>
+							<option value="CM">CM</option>
+							<option value="EX">EX</option>
+							<option value="RS">RS</option>
+						</select>
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- Email -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="email">EMAIL</label>
+						<input class="form-control" id="email" type="text" name="email" required
+							data-error="Please enter your Email">
+						<div class="help-block with-errors"></div>
+					</div>
+					<!-- TELÉFONO -->
+					<div class="form-group label-floating">
+						<label class="control-label" for="name">TELÉFONO</label>
+						<input class="form-control" id="telefono" type="number" name="telefono" required
+							data-error="Please enter your name">
+						<div class="help-block with-errors"></div>
+					</div>
+			</div>
+
+			{{!-- PARTE DERECHA --}}
+			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
+				<!-- FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000) -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label" for="name">FACTURACION BRUTA ANUAL (SI POSEE
+						MENOS DE 1 AÑO:
+						$1.000.000)</label>
+					<input class="form-control" id="fac_anual" type="text" name="fac_anual" required
+						data-error="Please enter your name">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- ULTIMA FECHA DE CIERRE DE EJERCICIO -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label">ULTIMA FECHA DE CIERRE DE EJERCICIO</label>
+					<input class="form-control" id="ult_cierre" type="text" name="ult_cierre" required
+						data-error="Please enter your message subject">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label">DNI DE SOCIO - REPRESENTANTE LEGAL -
+						FIRMANTE</label>
+					<input class="form-control" id="DNI" type="number" name="DNI" required
+						data-error="Please enter your message subject">
+					<div class="help-block with-errors"></div>
+				</div>
+
+				<!-- NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label" for="name">NOMBRE DE SOCIO - REPRESENTANTE
+						LEGAL - FIRMANTE</label>
+					<input class="form-control" id="nombre" type="text" name="nombre" required
+						data-error="Please enter your name">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- APELLIDO DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label" for="name">APELLIDO DE SOCIO - REPRESENTANTE
+						LEGAL -
+						FIRMANTE</label>
+					<input class="form-control" id="apellido" type="text" name="apellido" required
+						data-error="Please enter your name">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- % DE PARTICIPACIÓN SOCIETARIA. -->
+				<div class="form-group label-floating">
+					<label style="color: #6c757d;" class="control-label">% DE PARTICIPACIÓN SOCIETARIA</label>
+					<input class="form-control" id="porc_part" type="number" name="porc_part" required
+						data-error="Please enter your message subject">
+					<div class="help-block with-errors"></div>
+				</div>
+			</div>
+
+			{{!-- PARTE DERECHA --}}
+			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
+				<!-- FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000) -->
+				<div class="form-group label-floating">
+					<label for="exampleFormControlFile1">CONSTANCIA DE CUIT</label>
+					<input type="file" accept="application/pdf" name="constancia" class="form-control-file" id="exampleFormControlFile1">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- ULTIMA FECHA DE CIERRE DE EJERCICIO -->
+				<div class="form-group label-floating">
+					<label for="exampleFormControlFile1">ESTATUTO - CONTRATO SOCIAL</label>
+					<input type="file" accept="application/pdf" name="estatuto" class="form-control-file" id="exampleFormControlFile1">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label for="exampleFormControlFile1">ULTIMO BALANCE</label>
+					<input type="file" accept="application/pdf" name="ultimobalance" class="form-control-file" id="exampleFormControlFile1">
+					<div class="help-block with-errors"></div>
+				</div>
+
+				<!-- NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label for="exampleFormControlFile1">DNI FIRMANTE FRENTE</label>
+					<input type="file" accept=".jpg" name="dnifrente" class="form-control-file" id="exampleFormControlFile1">
+					<div class="help-block with-errors"></div>
+				</div>
+				<!-- APELLIDO DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
+				<div class="form-group label-floating">
+					<label for="exampleFormControlFile1">DNI FIRMANTE DORSO</label>
+					<input type="file" accept=".jpg" name="dnidorso" class="form-control-file" id="exampleFormControlFile1">
+					<div class="help-block with-errors"></div>
+				</div>
+
+				<!-- Form Submit -->
+				<div class="form-submit mt-5">
+					<button class="btn btn-primary btn-lg btn-block" type="submit" id="form-submit"><i
+							class="material-icons mdi mdi-message-outline"></i>Enviar</button>
+					<div id="msgSubmit" class="h3 text-center hidden"></div>
+					<div class="clearfix"></div>
+</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+</section>
+
+
+<script>
+	$(document).ready(function () {
+		var spl_data;
+
+		// Loading Promotor
+		$.get('promotor.xml', function (data) {
+			spl_data = data;
+			var that = $('#promotor');
+			$('Emp', spl_data).each(function () {
+				$('<option />', {
+					name: $(this).text(),
+					text: $(this).text(),
+					value: $(this).text()
+				}).appendTo(that);
+			});
+		}, 'xml');
+	}); 
+</script>
