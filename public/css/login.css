@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 html,body{
-    background-image: url('https://050128.com/data/out/94/4759892-wallpaper-white.jpg');
-    background-size: cover;
+    background-image: url("../img/FONDO-SISTEMA.png");
     background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
-    font-family: 'Numans', sans-serif;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
     }
 .container{
 height: 100%;
@@ -84,4 +85,7 @@ color: white;
 .links a{
 margin-left: 4px;
 }
-
+label
+{
+    color:white
+}

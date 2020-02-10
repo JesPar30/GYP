@@ -13,9 +13,7 @@ const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
 const upload = multer({ dest: __dirname })
-const Recaptcha = require('express-recaptcha').RecaptchaV3;
 
-let recaptcha = new Recaptcha('6LcTvpMUAAAAALDaeDO8m-a6EfsNDQlbM7YQH8M2', '6LcTvpMUAAAAACqKJGMDn3WydcjPc3uHAn4MmAr7');
 let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
@@ -58,18 +56,26 @@ app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main.hbs' }));
 app.set('view engine', '.hbs');
 
 app.get('/', checkAuthenticated, function (req, res) {
-    res.render(`inicio`);
+    res.render(`inicio`, {
+        style: 'home.css'
+    });
 });
 app.get('/login', checkNotAuthenticated, function (req, res) {
-    res.render(`login`);
+    res.render(`login`, {
+        style: 'login.css'
+    });
 });
 
 app.get('/fisicas', checkAuthenticated, function (req, res) {
-    res.render(`fisicas`);
+    res.render(`fisicas`, {
+        style: 'formulario.css'
+    });
 });
 
 app.get('/juridicas', checkAuthenticated, function (req, res) {
-    res.render(`juridicas`);
+    res.render(`juridicas`, {
+        style: 'formulario.css'
+    });
 });
 
 app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
@@ -484,7 +490,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
     // setup email data with unicode symbols
     let mailOptions = {
         from: 'GESTION PYME <jesus.parra@railcom.com.ar>', // sender address
-        to: `${req.body.email}`, // list of receivers
+        to: `jesus.parra@railcom.com.ar`, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
