@@ -78,11 +78,15 @@ app.get('/juridicas', checkAuthenticated, function (req, res) {
     });
 });
 
+app.get('/redir_login', checkAuthenticated, function (req, res) {
+    res.render(`redir_login`);
+});
+
 app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
     function (req, res) {
         userr = req.body.username
         passs = req.body.password
-        res.render('inicio');
+        res.render('redir_login.hbs');
     });
 var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 1 }, { name: 'dnidorso', maxCount: 1 }])
 app.post('/juridicas', cpUpload, function (req, res) {
