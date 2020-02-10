@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<Productos>
+<Prod index='100000'></Prod>
+<Prod index='1'>Cuenta Instituciones</Prod>
+<Prod index='2'>Cuenta Consorcio</Prod>
+<Prod index='3'>Cuenta PYME (JURIDICA)</Prod>
+<Prod index='4'>Paquete PYME (JURIDICA)</Prod>
+<Prod index='5'>Supercuenta Negocio</Prod>
+<Prod index='6'>PackNegocio</Prod>
+<Prod index='7'>PackNegocio Gold</Prod>
+<Prod index='8'>PackNegocio Platinum</Prod>
+<Prod index='9'>PackNegocio Black</Prod>
+</Productos>

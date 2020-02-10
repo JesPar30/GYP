@@ -13,7 +13,9 @@ const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
 const upload = multer({ dest: __dirname })
+const Recaptcha = require('express-recaptcha').RecaptchaV3;
 
+let recaptcha = new Recaptcha('6LcTvpMUAAAAALDaeDO8m-a6EfsNDQlbM7YQH8M2', '6LcTvpMUAAAAACqKJGMDn3WydcjPc3uHAn4MmAr7');
 let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
@@ -62,24 +64,24 @@ app.get('/login', checkNotAuthenticated, function (req, res) {
     res.render(`login`);
 });
 
-app.get('/fisicas', checkAuthenticated, function (req, res) {
+app.get('/fisicas',checkAuthenticated, function (req, res) {
     res.render(`fisicas`);
 });
 
-app.get('/juridicas', checkAuthenticated, function (req, res) {
+app.get('/juridicas',checkAuthenticated, function (req, res) {
     res.render(`juridicas`);
 });
 
-app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
+app.post('/',passport.authenticate('pop3', { failureRedirect: '/' }),
     function (req, res) {
         userr = req.body.username
         passs = req.body.password
-
         res.render('inicio');
     });
     var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 1 }, { name: 'dnidorso', maxCount: 1 }])
 app.post('/juridicas', cpUpload,function (req, res) {
 
+    
     // Create a new instance of a Workbook class
     var wb = new xl.Workbook();
 
@@ -235,8 +237,8 @@ app.post('/juridicas', cpUpload,function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'cartas@railcom.com.ar', // generated ethereal user
-            pass: 'Cartas159.'  // generated ethereal password
+            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
+            pass: '343434jesus.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -245,7 +247,7 @@ app.post('/juridicas', cpUpload,function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION PYME <cartas@railcom.com.ar>', // sender address
+        from: 'GESTION PYME', // sender address
         to: `${req.body.email}`, // list of receivers
         subject: `CC PYME ${req.body.nombre}`, // Subject line
         text: 'Hello world?', // plain text body
@@ -320,128 +322,96 @@ app.post('/fisicas', function (req, res) {
 
     // Set value of cell A1 to 100 as a number type styled with paramaters of style
     ws.cell(1, 1)
-        .string('PROMOTOR RAILCOM')
+        .string('FECHA CARGA SOLICITUD')
         .style(style);
 
     // Set value of cell B1 to 200 as a number type styled with paramaters of style
     ws.cell(1, 2)
-        .string('N° DE SUCURSAL')
+        .string('CUIT')
         .style(style);
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(1, 3)
-        .string('CUIT')
-        .style(style);
-
-
-    // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 4)
         .string('RAZON SOCIAL')
         .style(style);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(1, 4)
+        .string('PROMOTOR RAILCOM')
+        .style(style);
+
+
+    // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(1, 5)
-        .string('CONDICIÓN ANTE IVA E IIGG (RI, MT, EX)')
+        .string('PRODUCTO OFRECIDO')
         .style(style);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(1, 6)
-        .string('CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS)')
+        .string('N° SUC')
         .style(style);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(1, 7)
-        .string('TELÉFONO')
+        .string('N° CTA CTE')
         .style(style);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(1, 8)
-        .string('E-MAIL')
+        .string('FECHA APERT')
         .style(style);
 
+    /* OBTENER FECHA */
 
-    // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 9)
-        .string('FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000)')
-        .style(style);
-
-
-    // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 10)
-        .string('ULTIMA FECHA DE CIERRE DE EJERCICIO')
-        .style(style);
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth()+1;
+    let day = today.getDate();
+    let fechaCompleta = day+'/'+month+'/'+year;
 
 
-    // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 11)
-        .string('DNI, APELLIDO Y NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE')
-        .style(style);
 
-    // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 12)
-        .string('% DE PARTICIPACIÓN SOCIETARIA.')
-        .style(style);
-
+    /* -------------- */
 
 
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 1)
-        .string(req.body.promotor)
+        .string(fechaCompleta)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 2)
-        .string(req.body.n_sucursal)
-        .style(style);
-    // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 3)
         .string(req.body.cuit)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 4)
+    ws.cell(2, 3)
         .string(req.body.razon)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(2, 4)
+        .string(req.body.promotor)
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 5)
-        .string(req.body.cond_iva)
+        .string(req.body.n_sucursal)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 6)
-        .string(req.body.cond_iibb)
+        .string(req.body.productos)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 7)
-        .string(req.body.telefono)
+        .string('')
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 8)
-        .string(req.body.email)
+        .string('')
         .style(style);
 
-    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    ws.cell(2, 9)
-        .string(req.body.fac_anual)
-        .style(style);
-    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    ws.cell(2, 10)
-        .string(req.body.ult_cierre)
-        .style(style);
-    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    ws.cell(2, 11)
-        .string(req.body.DNI + '/' + req.body.nombre + ' ' + req.body.apellido)
-        .style(style);
-    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    ws.cell(2, 12)
-        .string(req.body.porc_part)
-        .style(style);
-
-
-
-
-    wb.write(`CC PYME ${req.body.razon}.xlsx`); //creacion del archivo
+    wb.write(`CC ${req.body.razon}.xlsx`); //creacion del archivo
 
     const output = `
     <h3>Detalle</h3>
@@ -458,8 +428,8 @@ app.post('/fisicas', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'cartas@railcom.com.ar', // generated ethereal user
-            pass: 'Cartas159.'  // generated ethereal password
+            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
+            pass: '343434jesus.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -468,14 +438,14 @@ app.post('/fisicas', function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION FISICA <cartas@railcom.com.ar>', // sender address
-        to: `${req.body.email}`, // list of receivers
-        subject: `CC PYME ${req.body.nombre}`, // Subject line
+        from: 'GESTION FISICA', // sender address
+        to: `jesus.parra@railcom.com.ar`, // list of receivers
+        subject: `CC ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
         attachments:
         {
-            path: `CC PYME ${req.body.razon}.xlsx`
+            path: `CC ${req.body.razon}.xlsx`
         }
     };
 
@@ -484,9 +454,9 @@ app.post('/fisicas', function (req, res) {
         if (error) {
             return console.log(error);
         }
-        fs.unlinkSync(`CC PYME ${req.body.razon}.xlsx`)//Archivo eliminado
+        fs.unlinkSync(`CC ${req.body.razon}.xlsx`)//Archivo eliminado
     });
-    res.redirect('inicio');
+    res.redirect('fisicas');
 
 
 

@@ -35,90 +35,13 @@
 							data-error="Please enter your name">
 						<div class="help-block with-errors"></div>
 					</div>
-					<!-- CONDICIÓN ANTE IVA E IIGG (RI, MT, EX) -->
+					<!-- PRODUCTO OFRECIDO -->
 					<div class="form-group label-floating">
-						<label class="control-label" for="name">CONDICIÓN ANTE IVA E IIGG (RI, MT, EX)</label>
-						<select id="cond_iva" name="cond_iva" class="form-control">
-							<option value="RI">RI</option>
-							<option value="MT">MT</option>
-							<option value="EX">EX</option>
+						<label class="control-label" for="name">PRODUCTO OFRECIDO</label>
+						<select id="productos" name="productos" class="form-control">
 						</select>
 						<div class="help-block with-errors"></div>
 					</div>
-					<!-- CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS) -->
-					<div class="form-group label-floating">
-						<label class="control-label" for="name">CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS)</label>
-						<select id="cond_iibb" name="cond_iibb" class="form-control">
-							<option value="LOCAL">LOCAL</option>
-							<option value="CM">CM</option>
-							<option value="EX">EX</option>
-							<option value="RS">RS</option>
-						</select>
-						<div class="help-block with-errors"></div>
-					</div>
-					<!-- Email -->
-					<div class="form-group label-floating">
-						<label class="control-label" for="email">EMAIL</label>
-						<input class="form-control" id="email" type="text" name="email" required
-							data-error="Please enter your Email">
-						<div class="help-block with-errors"></div>
-					</div>
-					<!-- TELÉFONO -->
-					<div class="form-group label-floating">
-						<label class="control-label" for="name">TELÉFONO</label>
-						<input class="form-control" id="telefono" type="number" name="telefono" required
-							data-error="Please enter your name">
-						<div class="help-block with-errors"></div>
-					</div>
-			</div>
-
-			{{!-- PARTE DERECHA --}}
-			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
-				<!-- FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000) -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label" for="name">FACTURACION BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO:
-						$1.000.000)</label>
-					<input class="form-control" id="fac_anual" type="text" name="fac_anual" required
-						data-error="Please enter your name">
-					<div class="help-block with-errors"></div>
-				</div>
-				<!-- ULTIMA FECHA DE CIERRE DE EJERCICIO -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label">ULTIMA FECHA DE CIERRE DE EJERCICIO</label>
-					<input class="form-control" id="ult_cierre" type="text" name="ult_cierre" required
-						data-error="Please enter your message subject">
-					<div class="help-block with-errors"></div>
-				</div>
-				<!-- DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label">DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE</label>
-					<input class="form-control" id="DNI" type="number" name="DNI" required
-						data-error="Please enter your message subject">
-					<div class="help-block with-errors"></div>
-				</div>
-
-				<!-- NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label" for="name">NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE</label>
-					<input class="form-control" id="nombre" type="text" name="nombre" required
-						data-error="Please enter your name">
-					<div class="help-block with-errors"></div>
-				</div>
-				<!-- APELLIDO DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label" for="name">APELLIDO DE SOCIO - REPRESENTANTE LEGAL -
-						FIRMANTE</label>
-					<input class="form-control" id="apellido" type="text" name="apellido" required
-						data-error="Please enter your name">
-					<div class="help-block with-errors"></div>
-				</div>
-				<!-- % DE PARTICIPACIÓN SOCIETARIA. -->
-				<div class="form-group label-floating">
-					<label style="color: #6c757d;" class="control-label">% DE PARTICIPACIÓN SOCIETARIA</label>
-					<input class="form-control" id="porc_part" type="number" name="porc_part" required
-						data-error="Please enter your message subject">
-					<div class="help-block with-errors"></div>
-				</div>
 
 				<!-- Form Submit -->
 				<div class="form-submit mt-5">
@@ -132,22 +55,38 @@
 		</div>
 	</div>
 </section>
-
-
-					<script>
+	<script>
 	$(document).ready(function () {
-		var spl_data;
+		let spl_data;
 
 		// Loading Promotor
 		$.get('promotor.xml', function (data) {
 			spl_data = data;
-			var that = $('#promotor');
+			let that = $('#promotor');
 			$('Emp', spl_data).each(function () {
 				$('<option />', {
 					name: $(this).text(),
 					text: $(this).text(),
 					value: $(this).text()
 				}).appendTo(that);
+			});
+		}, 'xml');
+	}); 
+</script>
+<script >
+		$(document).ready(function () {
+		let spl_data2;
+
+		// Loading Promotor
+		$.get('productos.xml', function (data2) {
+			spl_data2 = data2;
+			let that2 = $('#productos');
+			$('Prod', spl_data2).each(function () {
+				$('<option />', {
+					name: $(this).text(),
+					text: $(this).text(),
+					value: $(this).text()
+				}).appendTo(that2);
 			});
 		}, 'xml');
 	}); 

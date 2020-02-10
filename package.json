@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-handlebars": "^3.1.0",
+    "express-recaptcha": "^5.0.1",
     "express-session": "^1.17.0",
     "imap": "^0.8.19",
     "imap-simple": "^4.3.0",
