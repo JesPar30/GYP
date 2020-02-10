@@ -100,7 +100,12 @@ app.post('/juridicas', cpUpload, function (req, res) {
         font: {
             color: 'white',
             size: 10,
-            background: 'blue'
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#0008a3',
+            fgColor: '#0008a3',
         },
         numberFormat: '$#,##0.00; ($#,##0.00); -',
     });
@@ -108,7 +113,25 @@ app.post('/juridicas', cpUpload, function (req, res) {
         font: {
             color: 'black',
             size: 10,
-            background: 'yellow'
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#f50000',
+            fgColor: '#f50000',
+        },
+        numberFormat: '$#,##0.00; ($#,##0.00); -',
+    });
+    var styleTITULOS = wb.createStyle({
+        font: {
+            color: 'black',
+            size: 10,
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#FFFF00',
+            fgColor: '#FFFF00',
         },
         numberFormat: '$#,##0.00; ($#,##0.00); -',
     });
@@ -116,7 +139,12 @@ app.post('/juridicas', cpUpload, function (req, res) {
         font: {
             color: 'white',
             size: 10,
-            background: 'black'
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#007a00',
+            fgColor: '#007a00',
         },
         numberFormat: '$#,##0.00; ($#,##0.00); -',
     });
@@ -133,40 +161,43 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
     // Set value of cell A1 to 100 as a number type styled with paramaters of style
 
-    ws.cell(1, 2)
+    ws.cell(1, 5)
         .string('FILA HISTORIAL')
         .style(styleHist);
 
     ws.cell(2, 2)
         .string('FECHA CARGA SOLICITUD')
-        .style(style);
+        .style(styleTITULOS);
     ws.cell(2, 3)
         .string('CUIT')
-        .style(style);
+        .style(styleTITULOS);
     ws.cell(2, 4)
         .string('RAZON SOCIAL')
-        .style(style);
+        .style(styleTITULOS);
     ws.cell(2, 5)
         .string('PROMOTOR RAILCOM')
-        .style(style);
-    ws.cell(2, 6)
-        .string('N° REGISTRO STADER')
-        .style(style);
+        .style(styleTITULOS);
+        ws.cell(2, 6)
+        .string('PRODUCTO OFRECIDO')
+        .style(styleTITULOS);
     ws.cell(2, 7)
-        .string('ESTADO (A - R - P - S)')
-        .style(style);
+        .string('N° REGISTRO STADER')
+        .style(styleTITULOS);
     ws.cell(2, 8)
-        .string('ENTREGADA A PROMOTOR')
-        .style(style);
+        .string('ESTADO (A - R - P - S)')
+        .style(styleTITULOS);
     ws.cell(2, 9)
-        .string('N° SUC')
-        .style(style);
+        .string('ENTREGADA A PROMOTOR')
+        .style(styleTITULOS);
     ws.cell(2, 10)
-        .string('N° CTA CTE')
-        .style(style);
+        .string('N° SUC')
+        .style(styleTITULOS);
     ws.cell(2, 11)
+        .string('N° CTA CTE')
+        .style(styleTITULOS);
+    ws.cell(2, 12)
         .string('FECHA APERT')
-        .style(style);
+        .style(styleTITULOS);
 
     ws.cell(3, 2)
         .string(fechaCompleta)
@@ -181,21 +212,24 @@ app.post('/juridicas', cpUpload, function (req, res) {
         .string(req.body.promotor)
         .style(style);
     ws.cell(3, 6)
-        .string('')
+        .string('Cuenta PYME')
         .style(style);
-    ws.cell(3, 7)
-        .string('P')
+        ws.cell(3, 7)
+        .string('')
         .style(style);
     ws.cell(3, 8)
-        .string('')
+        .string('P')
         .style(style);
     ws.cell(3, 9)
-        .string(req.body.n_sucursal)
-        .style(style);
-    ws.cell(3, 10)
         .string('')
         .style(style);
+    ws.cell(3, 10)
+        .string(req.body.n_sucursal)
+        .style(style);
     ws.cell(3, 11)
+        .string('')
+        .style(style);
+    ws.cell(3, 12)
         .string('')
         .style(style);
     /* ---------------- */
@@ -203,77 +237,77 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
     /* CELDAS WEB */
 
-    ws.cell(5, 2)
+    ws.cell(5, 5)
         .string('FILA WEB')
         .style(styleWeb);
 
     // Set value of cell A1 to 100 as a number type styled with paramaters of style
     ws.cell(6, 1)
         .string('PROMOTOR RAILCOM')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell B1 to 200 as a number type styled with paramaters of style
     ws.cell(6, 2)
         .string('N° DE SUCURSAL')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 3)
         .string('CUIT')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 4)
         .string('RAZON SOCIAL')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 5)
         .string('CONDICIÓN ANTE IVA E IIGG (RI, MT, EX)')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 6)
         .string('CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS)')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 7)
         .string('TELÉFONO')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 8)
         .string('E-MAIL')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 9)
         .string('FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000)')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 10)
         .string('ULTIMA FECHA DE CIERRE DE EJERCICIO')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 11)
         .string('DNI, APELLIDO Y NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 12)
         .string('% DE PARTICIPACIÓN SOCIETARIA.')
-        .style(style);
+        .style(styleTITULOS);
 
 
 
@@ -341,44 +375,44 @@ app.post('/juridicas', cpUpload, function (req, res) {
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 1)
         .string('ID')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 2)
         .string('Comercializadora Nombre')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 3)
         .string('Tipo de Venta')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 4)
         .string('CUIT')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 5)
-        .string('Nombre Razon Social--------------------------------------------')
-        .style(style);
+        .string('Nombre Razon Social')
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 6)
         .string('Sucursal')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 7)
-        .string('Producto Ofrecido-----------------------------------------')
-        .style(style);
+        .string('Producto Ofrecido')
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 8)
         .string('Nro Establecimiento')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 9)
         .string('Tipo de elemento')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(10, 10)
         .string('Ruta de acceso')
-        .style(style);
+        .style(styleTITULOS);
 
     /* ------------------------------------------------------------------ */
 
@@ -422,7 +456,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
 
 
-    wb.write(`CC PYME ${req.body.razon}.xlsx`); //creacion del archivo
+    wb.write(`CC PYME CARGA WEB ${req.body.razon}.xlsx`); //creacion del archivo
 
     const output = `
     <h3>Detalle</h3>
@@ -456,7 +490,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
         html: output, // html body
         attachments: [
             {
-                path: `CC PYME ${req.body.razon}.xlsx`
+                path: `CC PYME CARGA WEB ${req.body.razon}.xlsx`
             },
             {
                 filename: `CONSTANCIA AFIP ${req.body.razon}.pdf`,
@@ -497,12 +531,12 @@ app.post('/juridicas', cpUpload, function (req, res) {
         if (error) {
             return console.log(error);
         }
-        fs.unlink(`CC PYME ${req.body.razon}.xlsx`)//Archivo eliminado
-        fs.unlink(req.files['constancia'][0].filename)//Archivo eliminado
-        fs.unlink(req.files['estatuto'][0].filename)//Archivo eliminado
-        fs.unlink(req.files['ultimobalance'][0].filename)//Archivo eliminado
-        fs.unlink(req.files['dnifrente'][0].filename)//Archivo eliminado
-        fs.unlink(req.files['dnidorso'][0].filename)//Archivo eliminado
+        fs.unlinkSync(`CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
+        fs.unlinkSync(req.files['constancia'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['estatuto'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['ultimobalance'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['dnifrente'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['dnidorso'][0].filename)//Archivo eliminado
     });
     res.render('juridicas')
 
@@ -528,61 +562,101 @@ app.post('/fisicas', function (req, res) {
     });
     var styleShare = wb.createStyle({
         font: {
+            color: 'white',
+            size: 10,
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#0008a3',
+            fgColor: '#0008a3',
+        },
+        numberFormat: '$#,##0.00; ($#,##0.00); -',
+    });
+    var styleTITULOS = wb.createStyle({
+        font: {
             color: 'black',
             size: 10,
-            background: 'blue'
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#FFFF00',
+            fgColor: '#FFFF00',
+        },
+        numberFormat: '$#,##0.00; ($#,##0.00); -',
+    });
+    var styleHist = wb.createStyle({
+        font: {
+            color: 'black',
+            size: 10,
+        },
+        fill: {
+            type: 'pattern',
+            patternType: 'solid',
+            bgColor: '#f50000',
+            fgColor: '#f50000',
         },
         numberFormat: '$#,##0.00; ($#,##0.00); -',
     });
 
+
+    /* CELDAS HISTORIAL */
+
+    ws.cell(1, 5)
+        .string('FILA HISTORIAL')
+        .style(styleHist);
+
+    /*  */
+
     // Set value of cell A1 to 100 as a number type styled with paramaters of style
-    ws.cell(1, 1)
+    ws.cell(2, 2)
         .string('FECHA CARGA SOLICITUD')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell B1 to 200 as a number type styled with paramaters of style
-    ws.cell(1, 2)
+    ws.cell(2, 3)
         .string('CUIT')
-        .style(style);
+        .style(styleTITULOS);
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 3)
+    ws.cell(2, 4)
         .string('RAZON SOCIAL')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 4)
+    ws.cell(2, 5)
         .string('PROMOTOR RAILCOM')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 5)
+    ws.cell(2, 6)
         .string('PRODUCTO OFRECIDO')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 6)
+    ws.cell(2, 7)
         .string('N° SUC')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 7)
+    ws.cell(2, 8)
         .string('ID(BCO)')
-        .style(style);
+        .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 8)
+    ws.cell(2, 9)
         .string('N° CTA CTE')
-        .style(style);
+        .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(1, 9)
+    ws.cell(2, 10)
         .string('FECHA APERT')
-        .style(style);
+        .style(styleTITULOS);
 
     /* OBTENER FECHA */
 
@@ -595,85 +669,122 @@ app.post('/fisicas', function (req, res) {
 
 
     /* -------------- */
-
-
-    // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 2)
+    ws.cell(3, 2)
         .string(fechaCompleta)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 3)
+    ws.cell(3, 3)
         .string(req.body.cuit)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 4)
+    ws.cell(3, 4)
         .string(req.body.razon)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 5)
+    ws.cell(3, 5)
         .string(req.body.promotor)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 6)
+    ws.cell(3, 6)
         .string(req.body.productos)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 7)
+    ws.cell(3, 7)
         .string(req.body.n_sucursal)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 8)
+    ws.cell(3, 8)
         .string('')
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 9)
+    ws.cell(3, 9)
         .string('')
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(2, 10)
+    ws.cell(3, 10)
         .string('')
         .style(style);
 
     /* CELDAS SHAREPOINT */
+    ws.cell(5, 5)
+        .string('FILA SHAREPOINT')
+        .style(styleShare);
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(4, 5)
-        .string('SHAREPOINT')
-        .style(styleShare);
+    ws.cell(6, 1)
+        .string('ID')
+        .style(styleTITULOS);
+
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 2)
+    ws.cell(6, 2)
+        .string('Comercializadora Nombre')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 3)
+        .string('Tipo de Venta')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 4)
+        .string('CUIT')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 5)
+        .string('Nombre Razon Social')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 6)
+        .string('Sucursal')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 7)
+        .string('Producto Ofrecido')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 8)
+        .string('Nro Establecimiento')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 9)
+        .string('Tipo de elemento')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 10)
+        .string('Ruta de acceso')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(7, 2)
         .string('Railcom')
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 3)
+    ws.cell(7, 3)
         .string('Cuenta')
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 4)
+    ws.cell(7, 4)
         .string(req.body.cuit)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 5)
+    ws.cell(7, 5)
         .string(req.body.razon)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 6)
+    ws.cell(7, 6)
         .string(req.body.n_sucursal)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 7)
+    ws.cell(7, 7)
         .string(req.body.productos)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 8)
+    ws.cell(7, 8)
         .string('')
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 9)
+    ws.cell(7, 9)
         .string('')
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(5, 10)
+    ws.cell(7, 10)
         .string('')
         .style(style);
 
