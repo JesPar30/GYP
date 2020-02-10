@@ -247,7 +247,7 @@ app.post('/juridicas', cpUpload,function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION PYME', // sender address
+        from: 'GESTION PYME <jesus.parra@railcom.com.ar>', // sender address
         to: `${req.body.email}`, // list of receivers
         subject: `CC PYME ${req.body.nombre}`, // Subject line
         text: 'Hello world?', // plain text body
@@ -396,11 +396,11 @@ app.post('/fisicas', function (req, res) {
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 5)
-        .string(req.body.n_sucursal)
+        .string(req.body.productos)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 6)
-        .string(req.body.productos)
+        .string(req.body.n_sucursal)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(2, 7)
@@ -438,7 +438,7 @@ app.post('/fisicas', function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION FISICA', // sender address
+        from: 'GESTION FISICA <jesus.parra@railcom.com.ar>', // sender address
         to: `jesus.parra@railcom.com.ar`, // list of receivers
         subject: `CC ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
