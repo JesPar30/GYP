@@ -12,7 +12,7 @@
 					<!-- PROMOTOR RAILCOM -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">PROMOTOR RAILCOM</label>
-						<select id="promotor" name="promotor" class="form-control"></select>
+						<select id="promotor" name="promotor" class="form-control" required></select>
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- RAZON SOCIAL -->
@@ -39,7 +39,7 @@
 					<!-- CONDICIÓN ANTE IVA E IIGG (RI, MT, EX) -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">CONDICIÓN ANTE IVA E IIGG (RI, MT, EX)</label>
-						<select id="cond_iva" name="cond_iva" class="form-control">
+						<select id="cond_iva" name="cond_iva" class="form-control" required>
 							<option value="RI">RI</option>
 							<option value="MT">MT</option>
 							<option value="EX">EX</option>
@@ -49,7 +49,7 @@
 					<!-- CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS) -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">CONDICIÓN ANTE IIBB (LOCAL, CM, EX, RS)</label>
-						<select id="cond_iibb" name="cond_iibb" class="form-control">
+						<select id="cond_iibb" name="cond_iibb" class="form-control" required>
 							<option value="LOCAL">LOCAL</option>
 							<option value="CM">CM</option>
 							<option value="EX">EX</option>
@@ -80,7 +80,7 @@
 					<label  class="control-label" for="name">FACTURACION BRUTA ANUAL (SI POSEE
 						MENOS DE 1 AÑO:
 						$1.000.000)</label>
-					<input class="form-control" id="fac_anual" type="text" name="fac_anual" required
+					<input class="form-control" id="fac_anual" type="number" name="fac_anual" required
 						data-error="Please enter your name">
 					<div class="help-block with-errors"></div>
 				</div>
@@ -131,32 +131,32 @@
 				<!-- FACT BRUTA ANUAL (SI POSEE MENOS DE 1 AÑO: $1.000.000) -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">CONSTANCIA DE CUIT</label>
-					<input type="file" accept="application/pdf" name="constancia" class="form-control-file" id="exampleFormControlFile1">
+					<input type="file" accept="application/pdf" name="constancia" class="form-control-file" id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 				<!-- ULTIMA FECHA DE CIERRE DE EJERCICIO -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">ESTATUTO - CONTRATO SOCIAL</label>
-					<input type="file" accept="application/pdf" name="estatuto" class="form-control-file" id="exampleFormControlFile1">
+					<input type="file" accept="application/pdf" name="estatuto" class="form-control-file" id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 				<!-- DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">ULTIMO BALANCE</label>
-					<input type="file" accept="application/pdf" name="ultimobalance" class="form-control-file" id="exampleFormControlFile1">
+					<input type="file" accept="application/pdf" name="ultimobalance" class="form-control-file" id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 
 				<!-- NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">DNI FIRMANTE FRENTE</label>
-					<input type="file" accept=".jpg" name="dnifrente" class="form-control-file" id="exampleFormControlFile1">
+					<input type="file" accept=".jpg" name="dnifrente" class="form-control-file" id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 				<!-- APELLIDO DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">DNI FIRMANTE DORSO</label>
-					<input type="file" accept=".jpg" name="dnidorso" class="form-control-file" id="exampleFormControlFile1">
+					<input type="file" accept=".jpg" name="dnidorso" class="form-control-file" id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 
