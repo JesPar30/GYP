@@ -506,7 +506,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: `GESTION PYME <${userr}>`, // sender address
+        from: `GESTION PYME <${req.body.mpromotor}>`, // sender address
         to: `jesus.parra@railcom.com.ar`, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
@@ -610,8 +610,8 @@ app.post('/juridicas', cpUpload, function (req, res) {
   </ul>
 `;
     let mailVendedor = {
-        from: `GESTION PYME <${userr}>`, // sender address
-        to: userr, // list of receivers
+        from: `GESTION PYME <${req.body.mpromotor}>`, // sender address
+        to: req.body.mpromotor, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         html: outputVendedor, // html body
     };
@@ -620,7 +620,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
             return console.log(error);
         }
     });
-    res.render('juridicas', { mensajeJuridicas: `Formulario enviado con exito a Administración y a ${userr}`,style: 'formulario.css' })
+    res.render('juridicas', { mensajeJuridicas: `Formulario enviado con exito a Administración y a ${req.body.mpromotor}`,style: 'formulario.css' })
 
 
 
@@ -953,8 +953,8 @@ app.post('/fisicas', function (req, res) {
         fs.unlinkSync(`CC ${req.body.razon}.xlsx`)//Archivo eliminado
     });
     let mailVendedor = {
-        from: 'GESTION EN SUCURSAL <jesus.parra@railcom.com.ar>', // sender address
-        to: userr, // list of receivers
+        from: `GESTION EN SUCURSAL <${req.body.mpromotor}>`, // sender address
+        to: req.body.mpromotor, // list of receivers
         subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: outputVendedor, // html body
@@ -964,7 +964,7 @@ app.post('/fisicas', function (req, res) {
             return console.log(error);
         }
     });
-    res.render('fisicas', { mensajeFisicas: `Formulario enviado con exito a Administración y ${userr}`,style: 'formulario.css' });
+    res.render('fisicas', { mensajeFisicas: `Formulario enviado con exito a Administración y ${req.body.mpromotor}`,style: 'formulario.css' });
 
 
 
@@ -1035,8 +1035,8 @@ app.post('/soloDatos', function (req, res) {
     });
 
     let mailVendedor = {
-        from: `DATOS WebApp <${userr}>`, // sender address
-        to: userr, // list of receivers
+        from: `DATOS WebApp <${req.body.mpromotor}>`, // sender address
+        to: req.body.mpromotor, // list of receivers
         subject: `DATOS WebApp ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: outputVendedor, // html body
@@ -1046,7 +1046,7 @@ app.post('/soloDatos', function (req, res) {
             return console.log(error);
         }
     });
-    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${userr}`,style: 'formulario.css' });
+    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${req.body.mpromotor}`,style: 'formulario.css' });
 
 });
 
