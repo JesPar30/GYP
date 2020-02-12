@@ -496,8 +496,8 @@ app.post('/juridicas', cpUpload, function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
-            pass: '343434jesus.'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Altas2019.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -507,7 +507,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
     // setup email data with unicode symbols
     let mailOptions = {
         from: `GESTION PYME <${req.body.mpromotor}>`, // sender address
-        to: `jesus.parra@railcom.com.ar`, // list of receivers
+        to: `altas.railcom@gmail.com`, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
@@ -924,8 +924,8 @@ app.post('/fisicas', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
-            pass: '343434jesus.'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Altas2019.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -934,8 +934,8 @@ app.post('/fisicas', function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION EN SUCURSAL <jesus.parra@railcom.com.ar>', // sender address
-        to: `jesus.parra@railcom.com.ar`, // list of receivers
+        from: `GESTION EN SUCURSAL <${req.body.mpromotor}>`, // sender address
+        to: `altas.railcom@gmail.com`, // list of receivers
         subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
@@ -1026,8 +1026,8 @@ app.post('/soloDatos', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
-            pass: '343434jesus.'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Altas2019.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
