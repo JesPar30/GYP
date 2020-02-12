@@ -6,25 +6,25 @@
 		<div class="d-flex justify-content-center h-100">
 			{{!-- PARTE IZQUIERDA --}}
 			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
-				<form action="/fisicas" class="shake" role="form" method="POST" id="contactForm" name="contact-form"
+				<form action="/soloDatos" class="shake" role="form" method="POST" id="contactForm" name="contact-form"
 					data-toggle="validator">
 					<!-- PROMOTOR RAILCOM -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">PROMOTOR RAILCOM</label>
-						<select id="promotor" name="promotor" class="form-control" required></select>
+						<select id="promotor" name="promotor" class="form-control" ></select>
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- RAZON SOCIAL -->
 					<div class="form-group label-floating">
 						<label class="control-label">RAZON SOCIAL</label>
-						<input class="form-control" id="msg_subject" type="text" name="razon" required
+						<input class="form-control" id="msg_subject" type="text" name="razon" 
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- CUIT -->
 					<div class="form-group label-floating">
 						<label class="control-label">CUIT</label>
-						<input class="form-control" id="cuit" type="number" name="cuit" required
+						<input class="form-control" id="cuit" type="number" name="cuit" 
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
@@ -44,20 +44,6 @@
 						<label class="control-label">Telefono</label>
 						<input class="form-control" id="telefono" type="text" name="telefono"
 							data-error="Please enter your message subject">
-						<div class="help-block with-errors"></div>
-					</div>
-					<!-- N° DE SUCURSAL -->
-					<div class="form-group label-floating">
-						<label class="control-label" for="name">N° DE SUCURSAL</label>
-						<input class="form-control" id="n_sucursal" type="number" name="n_sucursal" required
-							data-error="Please enter your name">
-						<div class="help-block with-errors"></div>
-					</div>
-					<!-- PRODUCTO OFRECIDO -->
-					<div class="form-group label-floating">
-						<label class="control-label" for="name">PRODUCTO OFRECIDO</label>
-						<select id="productos" name="productos" class="form-control" required>
-						</select>
 						<div class="help-block with-errors"></div>
 					</div>
 

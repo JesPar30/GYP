@@ -71,6 +71,11 @@ app.get('/fisicas', checkAuthenticated, function (req, res) {
         style: 'formulario.css'
     });
 });
+app.get('/soloDatos', checkAuthenticated, function (req, res) {
+    res.render(`soloDatos`, {
+        style: 'formulario.css'
+    });
+});
 
 app.get('/juridicas', checkAuthenticated, function (req, res) {
     res.render(`juridicas`, {
@@ -88,6 +93,9 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
         passs = req.body.password
         res.render('redir_login.hbs');
     });
+
+
+
 var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 1 }, { name: 'dnidorso', maxCount: 1 }])
 app.post('/juridicas', cpUpload, function (req, res) {
 
@@ -548,6 +556,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
         fs.unlinkSync(req.files['dnifrente'][0].filename)//Archivo eliminado
         fs.unlinkSync(req.files['dnidorso'][0].filename)//Archivo eliminado
     });
+
     res.render('juridicas')
 
 
@@ -809,6 +818,38 @@ app.post('/fisicas', function (req, res) {
       <li>CUIT: ${req.body.cuit}</li>
     </ul>
   `;
+let direcForm
+let localidadForm
+let tlForm
+
+if (req.body.direccion.length>0) {
+    direcForm=req.body.direccion
+} else{
+    direcForm='';
+}
+if (req.body.localidad.length>0) {
+    localidadForm=req.body.localidad
+} else{
+    localidadForm='';
+}
+if (req.body.telefono.length>0) {
+    tlForm=req.body.telefono
+} else{
+    tlForm='';
+}
+  const outputVendedor = `
+  <h3>Detalle</h3>
+  <ul>  
+    <li>Promotor: ${req.body.promotor}</li>
+    <li>Razon Social: ${req.body.razon}</li>
+    <li>CUIT: ${req.body.cuit}</li>
+    <li>Dirección: ${direcForm}</li>
+    <li>Localidad: ${localidadForm}</li>
+    <li>Numero de Telefono: ${tlForm}</li>
+    <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
+    <li>Producto Ofrecido: ${req.body.productos}</li>
+  </ul>
+`;
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -826,7 +867,7 @@ app.post('/fisicas', function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION FISICA <jesus.parra@railcom.com.ar>', // sender address
+        from: 'GESTION EN SUCURSAL <jesus.parra@railcom.com.ar>', // sender address
         to: `jesus.parra@railcom.com.ar`, // list of receivers
         subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
@@ -844,7 +885,101 @@ app.post('/fisicas', function (req, res) {
         }
         fs.unlinkSync(`CC ${req.body.razon}.xlsx`)//Archivo eliminado
     });
+    let mailVendedor = {
+        from: 'GESTION EN SUCURSAL <jesus.parra@railcom.com.ar>', // sender address
+        to: userr, // list of receivers
+        subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
+        text: 'Hello world?', // plain text body
+        html: outputVendedor, // html body
+    };
+    transporter.sendMail(mailVendedor, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+    });
     res.redirect('fisicas');
+
+
+
+});
+
+app.post('/soloDatos', function (req, res) {
+let direcForm
+let localidadForm
+let tlForm
+let promotorForm
+let razonForm
+let cuitForm
+
+if (req.body.promotor.length>0) {
+    promotorForm=req.body.promotor
+} else{
+    promotorForm='';
+}
+if (req.body.razon.length>0) {
+    razonForm=req.body.razon
+} else{
+    razonForm='';
+}
+if (req.body.cuit.length>0) {
+    cuitForm=req.body.cuit
+} else{
+    cuitForm='';
+}
+if (req.body.direccion.length>0) {
+    direcForm=req.body.direccion
+} else{
+    direcForm='';
+}
+if (req.body.localidad.length>0) {
+    localidadForm=req.body.localidad
+} else{
+    localidadForm='';
+}
+if (req.body.telefono.length>0) {
+    tlForm=req.body.telefono
+} else{
+    tlForm='';
+}
+  const outputVendedor = `
+  <h3>Detalle</h3>
+  <ul>  
+    <li>Promotor: ${promotorForm}</li>
+    <li>Razon Social: ${razonForm}</li>
+    <li>CUIT: ${cuitForm}</li>
+    <li>Dirección: ${direcForm}</li>
+    <li>Localidad: ${localidadForm}</li>
+    <li>Numero de Telefono: ${tlForm}</li>
+  </ul>
+`;
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: 'smtpout.secureserver.net',
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+            user: 'jesus.parra@railcom.com.ar', // generated ethereal user
+            pass: '343434jesus.'  // generated ethereal password
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+
+    let mailVendedor = {
+        from: `DATOS WebApp <${userr}>`, // sender address
+        to: userr, // list of receivers
+        subject: `DATOS WebApp ${req.body.razon}`, // Subject line
+        text: 'Hello world?', // plain text body
+        html: outputVendedor, // html body
+    };
+    transporter.sendMail(mailVendedor, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+    });
+    res.redirect('soloDatos');
 
 
 
