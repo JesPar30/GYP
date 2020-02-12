@@ -23,6 +23,12 @@
 					<button class="btn btn-danger" type="submit" style="margin-left:">Cerrar Sesión</button>
 				</form>
 			</li>
+								{{#if mensajeBienvenida}}
+
+					<div class="alert alert-primary" role="alert">
+						{{mensajeBienvenida}}
+					</div>
+					{{/if}}
 		</ul>
 	</div>
 </nav>

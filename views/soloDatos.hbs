@@ -11,20 +11,20 @@
 					<!-- PROMOTOR RAILCOM -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">PROMOTOR RAILCOM</label>
-						<select id="promotor" name="promotor" class="form-control" ></select>
+						<select id="promotor" name="promotor" class="form-control"></select>
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- RAZON SOCIAL -->
 					<div class="form-group label-floating">
 						<label class="control-label">RAZON SOCIAL</label>
-						<input class="form-control" id="msg_subject" type="text" name="razon" 
+						<input class="form-control" id="msg_subject" type="text" name="razon"
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- CUIT -->
 					<div class="form-group label-floating">
 						<label class="control-label">CUIT</label>
-						<input class="form-control" id="cuit" type="number" name="cuit" 
+						<input class="form-control" id="cuit" type="number" name="cuit"
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
@@ -48,6 +48,12 @@
 					</div>
 
 					<!-- Form Submit -->
+					{{#if mensaje}}
+
+					<div class="alert alert-success" role="alert">
+						{{mensaje}}
+					</div>
+					{{/if}}
 					<div class="form-submit mt-5">
 						<button class="btn btn-primary btn-lg btn-block" type="submit" id="form-submit"><i
 								class="material-icons mdi mdi-message-outline"></i>Enviar</button>

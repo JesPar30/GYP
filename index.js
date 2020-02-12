@@ -18,8 +18,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 995,
-    enabletls: true,
+    port: 110,
+    enabletls: false,
     usernameField: userr,
     passwordField: passs,
 }
@@ -51,6 +51,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(express.static(path.join(__dirname + '/views')));
 app.use(express.static(path.join(__dirname + '/public')));
+
+app.use(function (req, res, next) {
+    req.flash('message', 'Enviado');
+    next();
+});
 //HANDLEBARS
 app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main.hbs' }));
 app.set('view engine', '.hbs');
@@ -91,7 +96,7 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
     function (req, res) {
         userr = req.body.username
         passs = req.body.password
-        res.render('redir_login.hbs');
+        res.render('inicio', {mensajeBienvenida: `BIENVENIDO: ${userr}`, style: 'home.css'});
     });
 
 
@@ -195,7 +200,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
     ws.cell(2, 5)
         .string('PROMOTOR RAILCOM')
         .style(styleTITULOS);
-        ws.cell(2, 6)
+    ws.cell(2, 6)
         .string('PRODUCTO OFRECIDO')
         .style(styleTITULOS);
     ws.cell(2, 7)
@@ -232,7 +237,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
     ws.cell(3, 6)
         .string('Cuenta PYME')
         .style(style);
-        ws.cell(3, 7)
+    ws.cell(3, 7)
         .string('')
         .style(style);
     ws.cell(3, 8)
@@ -501,7 +506,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: 'GESTION PYME <jesus.parra@railcom.com.ar>', // sender address
+        from: `GESTION PYME <${userr}>`, // sender address
         to: `jesus.parra@railcom.com.ar`, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
@@ -556,8 +561,66 @@ app.post('/juridicas', cpUpload, function (req, res) {
         fs.unlinkSync(req.files['dnifrente'][0].filename)//Archivo eliminado
         fs.unlinkSync(req.files['dnidorso'][0].filename)//Archivo eliminado
     });
+    let direcForm
+    let localidadForm
+    let tlForm
+    let promotorForm
+    let razonForm
+    let cuitForm
 
-    res.render('juridicas')
+    if (req.body.promotor.length > 0) {
+        promotorForm = req.body.promotor
+    } else {
+        promotorForm = '';
+    }
+    if (req.body.razon.length > 0) {
+        razonForm = req.body.razon
+    } else {
+        razonForm = '';
+    }
+    if (req.body.cuit.length > 0) {
+        cuitForm = req.body.cuit
+    } else {
+        cuitForm = '';
+    }
+    if (req.body.direccion.length > 0) {
+        direcForm = req.body.direccion
+    } else {
+        direcForm = '';
+    }
+    if (req.body.localidad.length > 0) {
+        localidadForm = req.body.localidad
+    } else {
+        localidadForm = '';
+    }
+    if (req.body.telefono.length > 0) {
+        tlForm = req.body.telefono
+    } else {
+        tlForm = '';
+    }
+    const outputVendedor = `
+  <h3>Detalle</h3>
+  <ul>  
+    <li>Promotor: ${promotorForm}</li>
+    <li>Razon Social: ${razonForm}</li>
+    <li>CUIT: ${cuitForm}</li>
+    <li>Dirección: ${direcForm}</li>
+    <li>Localidad: ${localidadForm}</li>
+    <li>Numero de Telefono: ${tlForm}</li>
+  </ul>
+`;
+    let mailVendedor = {
+        from: `GESTION PYME <${userr}>`, // sender address
+        to: userr, // list of receivers
+        subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
+        html: outputVendedor, // html body
+    };
+    transporter.sendMail(mailVendedor, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+    });
+    res.render('juridicas', { mensajeJuridicas: `Formulario enviado con exito a Administración y a ${userr}`,style: 'formulario.css' })
 
 
 
@@ -809,35 +872,26 @@ app.post('/fisicas', function (req, res) {
 
 
     wb.write(`CC ${req.body.razon}.xlsx`); //creacion del archivo
+    let direcForm
+    let localidadForm
+    let tlForm
 
-    const output = `
-    <h3>Detalle</h3>
-    <ul>  
-      <li>Promotor: ${req.body.promotor}</li>
-      <li>Razon Social: ${req.body.razon}</li>
-      <li>CUIT: ${req.body.cuit}</li>
-    </ul>
-  `;
-let direcForm
-let localidadForm
-let tlForm
-
-if (req.body.direccion.length>0) {
-    direcForm=req.body.direccion
-} else{
-    direcForm='';
-}
-if (req.body.localidad.length>0) {
-    localidadForm=req.body.localidad
-} else{
-    localidadForm='';
-}
-if (req.body.telefono.length>0) {
-    tlForm=req.body.telefono
-} else{
-    tlForm='';
-}
-  const outputVendedor = `
+    if (req.body.direccion.length > 0) {
+        direcForm = req.body.direccion
+    } else {
+        direcForm = '';
+    }
+    if (req.body.localidad.length > 0) {
+        localidadForm = req.body.localidad
+    } else {
+        localidadForm = '';
+    }
+    if (req.body.telefono.length > 0) {
+        tlForm = req.body.telefono
+    } else {
+        tlForm = '';
+    }
+    const outputVendedor = `
   <h3>Detalle</h3>
   <ul>  
     <li>Promotor: ${req.body.promotor}</li>
@@ -849,6 +903,19 @@ if (req.body.telefono.length>0) {
     <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
     <li>Producto Ofrecido: ${req.body.productos}</li>
   </ul>
+`;
+    const output = `
+<h3>Detalle</h3>
+<ul>  
+<li>Promotor: ${req.body.promotor}</li>
+<li>Razon Social: ${req.body.razon}</li>
+<li>CUIT: ${req.body.cuit}</li>
+<li>Dirección: ${direcForm}</li>
+<li>Localidad: ${localidadForm}</li>
+<li>Numero de Telefono: ${tlForm}</li>
+<li>Numero de Sucursal: ${req.body.n_sucursal}</li>
+<li>Producto Ofrecido: ${req.body.productos}</li>
+</ul>
 `;
 
     // create reusable transporter object using the default SMTP transport
@@ -897,51 +964,51 @@ if (req.body.telefono.length>0) {
             return console.log(error);
         }
     });
-    res.redirect('fisicas');
+    res.render('fisicas', { mensajeFisicas: `Formulario enviado con exito a Administración y ${userr}`,style: 'formulario.css' });
 
 
 
 });
 
 app.post('/soloDatos', function (req, res) {
-let direcForm
-let localidadForm
-let tlForm
-let promotorForm
-let razonForm
-let cuitForm
+    let direcForm
+    let localidadForm
+    let tlForm
+    let promotorForm
+    let razonForm
+    let cuitForm
 
-if (req.body.promotor.length>0) {
-    promotorForm=req.body.promotor
-} else{
-    promotorForm='';
-}
-if (req.body.razon.length>0) {
-    razonForm=req.body.razon
-} else{
-    razonForm='';
-}
-if (req.body.cuit.length>0) {
-    cuitForm=req.body.cuit
-} else{
-    cuitForm='';
-}
-if (req.body.direccion.length>0) {
-    direcForm=req.body.direccion
-} else{
-    direcForm='';
-}
-if (req.body.localidad.length>0) {
-    localidadForm=req.body.localidad
-} else{
-    localidadForm='';
-}
-if (req.body.telefono.length>0) {
-    tlForm=req.body.telefono
-} else{
-    tlForm='';
-}
-  const outputVendedor = `
+    if (req.body.promotor.length > 0) {
+        promotorForm = req.body.promotor
+    } else {
+        promotorForm = '';
+    }
+    if (req.body.razon.length > 0) {
+        razonForm = req.body.razon
+    } else {
+        razonForm = '';
+    }
+    if (req.body.cuit.length > 0) {
+        cuitForm = req.body.cuit
+    } else {
+        cuitForm = '';
+    }
+    if (req.body.direccion.length > 0) {
+        direcForm = req.body.direccion
+    } else {
+        direcForm = '';
+    }
+    if (req.body.localidad.length > 0) {
+        localidadForm = req.body.localidad
+    } else {
+        localidadForm = '';
+    }
+    if (req.body.telefono.length > 0) {
+        tlForm = req.body.telefono
+    } else {
+        tlForm = '';
+    }
+    const outputVendedor = `
   <h3>Detalle</h3>
   <ul>  
     <li>Promotor: ${promotorForm}</li>
@@ -979,9 +1046,7 @@ if (req.body.telefono.length>0) {
             return console.log(error);
         }
     });
-    res.redirect('soloDatos');
-
-
+    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${userr}`,style: 'formulario.css' });
 
 });
 

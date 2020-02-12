@@ -62,6 +62,12 @@
 					</div>
 
 					<!-- Form Submit -->
+					{{#if mensajeFisicas}}
+
+					<div class="alert alert-success" role="alert">
+						{{mensajeFisicas}}
+					</div>
+					{{/if}}
 					<div class="form-submit mt-5">
 						<button class="btn btn-primary btn-lg btn-block" type="submit" id="form-submit"><i
 								class="material-icons mdi mdi-message-outline"></i>Enviar</button>
