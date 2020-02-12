@@ -1,11 +1,10 @@
-ï»¿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <Employee>
 <Emp index='100000'></Emp>
-<Emp index='60'>EXZA POS TECH SRL</Emp>
 <Emp index='4'>CLAUDIA REBELLO</Emp>
 <Emp index='9'>NAARA MELANIE LIBERCZUK</Emp>
 <Emp index='26'>RAFAELA GONZALEZ</Emp>
-<Emp index='47'>MUÃ‘OZ JULIAN</Emp>
+<Emp index='47'>MUÑOZ JULIAN</Emp>
 <Emp index='27'>YEDRO FERNANDO MARTIN</Emp>
 <Emp index='28'>RIOSECO FEDERICO PEDRO</Emp>
 <Emp index='48'>PORTELA MATIAS ALEJANDRO</Emp>
@@ -19,7 +18,7 @@
 <Emp index='12'>ELIZABETH FLEITAS</Emp>
 <Emp index='13'>LAURA GUEVARA</Emp>
 <Emp index='14'>FRANCO MANSILLA</Emp>
-<Emp index='15'>GONZALO EZEQUIEL MÃœLLER</Emp>
+<Emp index='15'>GONZALO EZEQUIEL MÜLLER</Emp>
 <Emp index='2'>SPINA NICOLAS</Emp>
 <Emp index='17'>SANCHEZ CARLOS ALBERTO</Emp>
 <Emp index='16'>PASSARINI FRANCO</Emp>
