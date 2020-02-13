@@ -51,6 +51,14 @@ color: black;
 border:0 !important;
 }
 
+#Login
+{
+    width: 50px;
+background-color: rgb(51, 51, 153);
+color: black;
+border:0 !important;
+}
+
 input:focus{
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
