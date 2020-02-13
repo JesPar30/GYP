@@ -34,7 +34,7 @@ passport.deserializeUser(function (user, done) {
 const app = express()
 app.use(flash())
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'vcvrwsfhgjkuasdvbnks3',
     resave: false,
     saveUninitialized: false
 }))
