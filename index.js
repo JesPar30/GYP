@@ -18,8 +18,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 995,
-    enabletls: true,
+    port: 110,
+    enabletls: false,
     usernameField: userr,
     passwordField: passs,
 }
