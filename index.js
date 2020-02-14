@@ -96,12 +96,12 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
     function (req, res) {
         userr = req.body.username
         passs = req.body.password
-        res.render('inicio', {mensajeBienvenida: `BIENVENIDO: ${userr}`, style: 'home.css'});
+        res.render('inicio', { mensajeBienvenida: `BIENVENIDO: ${userr}`, style: 'home.css' });
     });
 
 
 
-var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 1 }, { name: 'dnidorso', maxCount: 1 }])
+var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 5 }, { name: 'dnidorso', maxCount: 5 }])
 app.post('/juridicas', cpUpload, function (req, res) {
 
 
@@ -504,13 +504,16 @@ app.post('/juridicas', cpUpload, function (req, res) {
         }
     });
 
+
+
     // setup email data with unicode symbols
     let mailOptions = {
         from: `GESTION PYME <${req.body.mpromotor}>`, // sender address
         to: `altas.railcom@gmail.com`, // list of receivers
         subject: `CC PYME CARGA WEB ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
-        html: output, // html body
+        html: output,
+        // html body
         attachments: [
             {
                 path: `CC PYME CARGA WEB ${req.body.razon}.xlsx`
@@ -561,8 +564,6 @@ app.post('/juridicas', cpUpload, function (req, res) {
         fs.unlinkSync(req.files['dnifrente'][0].filename)//Archivo eliminado
         fs.unlinkSync(req.files['dnidorso'][0].filename)//Archivo eliminado
     });
-    let direcForm
-    let localidadForm
     let tlForm
     let promotorForm
     let razonForm
@@ -608,7 +609,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
             return console.log(error);
         }
     });
-    res.render('juridicas', { mensajeJuridicas: `Formulario enviado con exito a Administración y a ${req.body.mpromotor}`,style: 'formulario.css' })
+    res.render('juridicas', { mensajeJuridicas: `Formulario enviado con exito a Administración y a ${req.body.mpromotor}`, style: 'formulario.css' })
 
 
 
@@ -952,7 +953,7 @@ app.post('/fisicas', function (req, res) {
             return console.log(error);
         }
     });
-    res.render('fisicas', { mensajeFisicas: `Formulario enviado con exito a Administración y ${req.body.mpromotor}`,style: 'formulario.css' });
+    res.render('fisicas', { mensajeFisicas: `Formulario enviado con exito a Administración y ${req.body.mpromotor}`, style: 'formulario.css' });
 
 
 
@@ -1034,7 +1035,7 @@ app.post('/soloDatos', function (req, res) {
             return console.log(error);
         }
     });
-    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${req.body.mpromotor}`,style: 'formulario.css' });
+    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${req.body.mpromotor}`, style: 'formulario.css' });
 
 });
 
