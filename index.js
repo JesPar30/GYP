@@ -18,8 +18,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 995,
-    enabletls: true,
+    port: 110,
+    enabletls: false,
     usernameField: userr,
     passwordField: passs,
 }
@@ -34,7 +34,7 @@ passport.deserializeUser(function (user, done) {
 const app = express()
 app.use(flash())
 app.use(session({
-    secret: 'vcvrwsfhgjkuasdvbnks3',
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false
 }))
@@ -583,16 +583,6 @@ app.post('/juridicas', cpUpload, function (req, res) {
     } else {
         cuitForm = '';
     }
-    if (req.body.direccion.length > 0) {
-        direcForm = req.body.direccion
-    } else {
-        direcForm = '';
-    }
-    if (req.body.localidad.length > 0) {
-        localidadForm = req.body.localidad
-    } else {
-        localidadForm = '';
-    }
     if (req.body.telefono.length > 0) {
         tlForm = req.body.telefono
     } else {
@@ -604,8 +594,6 @@ app.post('/juridicas', cpUpload, function (req, res) {
     <li>Promotor: ${promotorForm}</li>
     <li>Razon Social: ${razonForm}</li>
     <li>CUIT: ${cuitForm}</li>
-    <li>Dirección: ${direcForm}</li>
-    <li>Localidad: ${localidadForm}</li>
     <li>Numero de Telefono: ${tlForm}</li>
   </ul>
 `;
