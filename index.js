@@ -18,8 +18,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 995,
-    enabletls: true,
+    port: 110,
+    enabletls: false,
     usernameField: userr,
     passwordField: passs,
 }
@@ -559,10 +559,10 @@ app.post('/juridicas', cpUpload, function (req, res) {
         }
         fs.unlinkSync(`CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
         fs.unlinkSync(req.files['constancia'][0].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['estatuto'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['estatuto'].filename)//Archivo eliminado
         fs.unlinkSync(req.files['ultimobalance'][0].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['dnifrente'][0].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['dnidorso'][0].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['dnifrente'].filename)//Archivo eliminado
+        fs.unlinkSync(req.files['dnidorso'].filename)//Archivo eliminado
     });
     let tlForm
     let promotorForm
