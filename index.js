@@ -101,7 +101,7 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
 
 
 
-var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 1 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 5 }, { name: 'dnidorso', maxCount: 5 }])
+var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 10 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 5 }, { name: 'dnidorso', maxCount: 5 }])
 app.post('/juridicas', cpUpload, function (req, res) {
 
 
