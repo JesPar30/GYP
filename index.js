@@ -12,7 +12,8 @@ const POP3Strategy = require('passport-pop3')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
-const upload = multer({ dest: __dirname })
+const upload = multer({ dest: __dirname +"/temps"})
+
 
 let userr = ''
 let passs = ''
@@ -101,7 +102,7 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
 
 
 
-var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto', maxCount: 10 }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 5 }, { name: 'dnidorso', maxCount: 5 }])
+var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto'}, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount:10}, { name: 'dnidorso', maxCount:10}])
 app.post('/juridicas', cpUpload, function (req, res) {
 
 
@@ -479,7 +480,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
 
 
-    wb.write(`CC PYME CARGA WEB ${req.body.razon}.xlsx`); //creacion del archivo
+    wb.write(__dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`); //creacion del archivo
 
     const output = `
     <h3>Detalle</h3>
@@ -504,8 +505,6 @@ app.post('/juridicas', cpUpload, function (req, res) {
         }
     });
 
-
-
     // setup email data with unicode symbols
     let mailOptions = {
         from: `GESTION PYME <${req.body.mpromotor}>`, // sender address
@@ -516,37 +515,35 @@ app.post('/juridicas', cpUpload, function (req, res) {
         // html body
         attachments: [
             {
-                path: `CC PYME CARGA WEB ${req.body.razon}.xlsx`
+                path: __dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`
             },
-            {
-                filename: `CONSTANCIA AFIP ${req.body.razon}.pdf`,
-                path: req.files['constancia'][0].filename,
+            {   
+                path:  __dirname+"/temps/"+req.files['constancia'][0].filename,
                 contentType: 'application/pdf'
             }
             ,
-            {
-                filename: `ESTATUTO - C.S ${req.body.razon}.pdf`,
-                path: req.files['estatuto'][0].filename,
+            {   
+                path:  __dirname+"/temps/"+req.files['estatuto'][0].filename,
                 contentType: 'application/pdf'
             }
-            ,
+             ,
             {
                 filename: `ULTIMO BALANCE ${req.body.razon}.pdf`,
-                path: req.files['ultimobalance'][0].filename,
+                path:  __dirname+"/temps/"+req.files['ultimobalance'][0].filename,
                 contentType: 'application/pdf'
             }
             ,
             {
                 filename: `DNI FRENTE ${req.body.nombre} ${req.body.apellido}.jpg`,
-                path: req.files['dnifrente'][0].filename,
+                path:  __dirname+"/temps/"+req.files['dnifrente'][0].filename,
                 contentType: 'image/jpg'
             }
             ,
             {
                 filename: `DNI DORSO ${req.body.nombre} ${req.body.apellido}.jpg`,
-                path: req.files['dnidorso'][0].filename,
+                path:  __dirname+"/temps/"+req.files['dnidorso'][0].filename,
                 contentType: 'image/jpg'
-            }
+            }  
 
         ]
 
@@ -557,12 +554,12 @@ app.post('/juridicas', cpUpload, function (req, res) {
         if (error) {
             return console.log(error);
         }
-        fs.unlinkSync(`CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
-        fs.unlinkSync(req.files['constancia'][0].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['estatuto'].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['ultimobalance'][0].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['dnifrente'].filename)//Archivo eliminado
-        fs.unlinkSync(req.files['dnidorso'].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+req.files['constancia'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+req.files['estatuto'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+req.files['ultimobalance'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+req.files['dnifrente'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname+"/temps/"+req.files['dnidorso'][0].filename)//Archivo eliminado
     });
     let tlForm
     let promotorForm

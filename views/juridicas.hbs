@@ -17,7 +17,7 @@
 							<option>CLAUDIA REBELLO</option>
 							<option>NAARA MELANIE LIBERCZUK</option>
 							<option>RAFAELA GONZALEZ</option>
-							<option>UÑOZ JULIAN</option>
+							<option>MUÑOZ JULIAN</option>
 							<option>YEDRO FERNANDO MARTIN</option>
 							<option>RIOSECO FEDERICO PEDRO</option>
 							<option >ROMERO GERMAN JORGE</option>
@@ -228,7 +228,7 @@
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1" id="labelConstancia">CONSTANCIA DE CUIT</label>
 					<input type="file" accept="application/pdf" id="constancia" name="constancia" class="form-control-file"
-						id="exampleFormControlFile1">
+						id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 {{!-- 				</div>
 														<script>
@@ -252,8 +252,8 @@
 				<!-- ULTIMA FECHA DE CIERRE DE EJERCICIO -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">CONTRATOS Y PODERES</label>
-					<input type="file" accept="application/pdf" name="estatuto[]" class="form-control-file"
-						id="exampleFormControlFile1" multiple required>
+					<input type="file" accept="application/pdf" name="estatuto" class="form-control-file"
+						id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 				<!-- DNI DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
@@ -267,15 +267,15 @@
 				<!-- NOMBRE DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">DNI FIRMANTE FRENTE</label>
-					<input type="file" accept=".jpg" name="dnifrente[]" class="form-control-file"
-						id="exampleFormControlFile1" multiple required>
+					<input type="file" accept=".jpg" name="dnifrente" class="form-control-file"
+						id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 				<!-- APELLIDO DE SOCIO - REPRESENTANTE LEGAL - FIRMANTE -->
 				<div class="form-group label-floating">
 					<label for="exampleFormControlFile1">DNI FIRMANTE DORSO</label>
-					<input type="file" accept=".jpg" name="dnidorso[]" class="form-control-file"
-						id="exampleFormControlFile1" multiple required>
+					<input type="file" accept=".jpg" name="dnidorso" class="form-control-file"
+						id="exampleFormControlFile1" required>
 					<div class="help-block with-errors"></div>
 				</div>
 
