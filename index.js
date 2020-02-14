@@ -18,8 +18,8 @@ let userr = ''
 let passs = ''
 let pop = new POP3Strategy({
     host: 'pop.secureserver.net',
-    port: 110,
-    enabletls: false,
+    port: 995,
+    enabletls: true,
     usernameField: userr,
     passwordField: passs,
 }
@@ -497,7 +497,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'altas@railcom.com.ar', // generated ethereal user
-            pass: 'Altas2019.'  // generated ethereal password
+            pass: 'Altas***A332'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -914,7 +914,7 @@ app.post('/fisicas', function (req, res) {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'altas@railcom.com.ar', // generated ethereal user
-            pass: 'Altas2019.'  // generated ethereal password
+            pass: 'Altas***A332'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -1016,7 +1016,7 @@ app.post('/soloDatos', function (req, res) {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'altas@railcom.com.ar', // generated ethereal user
-            pass: 'Altas2019.'  // generated ethereal password
+            pass: 'Altas***A332'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
