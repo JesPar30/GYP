@@ -713,11 +713,11 @@ app.post('/fisicas', function (req, res) {
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(2, 8)
-        .string('TELEFONO')
+        .string('MAIL')
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(2, 9)
-        .string('MAIL')
+        .string('TELEFONO')
         .style(styleTITULOS);
 
     // Set value of cell C1 to a formula styled with paramaters of style
