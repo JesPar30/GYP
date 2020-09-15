@@ -12,7 +12,7 @@ const POP3Strategy = require('passport-pop3')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
-const upload = multer({ dest: __dirname +"/temps"})
+const upload = multer({ dest: __dirname + "/temps" })
 
 
 let userr = ''
@@ -102,7 +102,7 @@ app.post('/', passport.authenticate('pop3', { failureRedirect: '/' }),
 
 
 
-var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto'}, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount:10}, { name: 'dnidorso', maxCount:10}])
+var cpUpload = upload.fields([{ name: 'constancia', maxCount: 1 }, { name: 'estatuto' }, { name: 'ultimobalance', maxCount: 1 }, { name: 'dnifrente', maxCount: 10 }, { name: 'dnidorso', maxCount: 10 }])
 app.post('/juridicas', cpUpload, function (req, res) {
 
 
@@ -480,7 +480,7 @@ app.post('/juridicas', cpUpload, function (req, res) {
 
 
 
-    wb.write(__dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`); //creacion del archivo
+    wb.write(__dirname + "/temps/" + `CC PYME CARGA WEB ${req.body.razon}.xlsx`); //creacion del archivo
 
     const output = `
     <h3>Detalle</h3>
@@ -515,35 +515,35 @@ app.post('/juridicas', cpUpload, function (req, res) {
         // html body
         attachments: [
             {
-                path: __dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`
+                path: __dirname + "/temps/" + `CC PYME CARGA WEB ${req.body.razon}.xlsx`
             },
-            {   
-                path:  __dirname+"/temps/"+req.files['constancia'][0].filename,
+            {
+                path: __dirname + "/temps/" + req.files['constancia'][0].filename,
                 contentType: 'application/pdf'
             }
             ,
-            {   
-                path:  __dirname+"/temps/"+req.files['estatuto'][0].filename,
+            {
+                path: __dirname + "/temps/" + req.files['estatuto'][0].filename,
                 contentType: 'application/pdf'
             }
-             ,
+            ,
             {
                 filename: `ULTIMO BALANCE ${req.body.razon}.pdf`,
-                path:  __dirname+"/temps/"+req.files['ultimobalance'][0].filename,
+                path: __dirname + "/temps/" + req.files['ultimobalance'][0].filename,
                 contentType: 'application/pdf'
             }
             ,
             {
                 filename: `DNI FRENTE ${req.body.nombre} ${req.body.apellido}.jpg`,
-                path:  __dirname+"/temps/"+req.files['dnifrente'][0].filename,
+                path: __dirname + "/temps/" + req.files['dnifrente'][0].filename,
                 contentType: 'image/jpg'
             }
             ,
             {
                 filename: `DNI DORSO ${req.body.nombre} ${req.body.apellido}.jpg`,
-                path:  __dirname+"/temps/"+req.files['dnidorso'][0].filename,
+                path: __dirname + "/temps/" + req.files['dnidorso'][0].filename,
                 contentType: 'image/jpg'
-            }  
+            }
 
         ]
 
@@ -554,12 +554,12 @@ app.post('/juridicas', cpUpload, function (req, res) {
         if (error) {
             return console.log(error);
         }
-        fs.unlinkSync(__dirname+"/temps/"+`CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
-        fs.unlinkSync(__dirname+"/temps/"+req.files['constancia'][0].filename)//Archivo eliminado
-        fs.unlinkSync(__dirname+"/temps/"+req.files['estatuto'][0].filename)//Archivo eliminado
-        fs.unlinkSync(__dirname+"/temps/"+req.files['ultimobalance'][0].filename)//Archivo eliminado
-        fs.unlinkSync(__dirname+"/temps/"+req.files['dnifrente'][0].filename)//Archivo eliminado
-        fs.unlinkSync(__dirname+"/temps/"+req.files['dnidorso'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + `CC PYME CARGA WEB ${req.body.razon}.xlsx`)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + req.files['constancia'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + req.files['estatuto'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + req.files['ultimobalance'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + req.files['dnifrente'][0].filename)//Archivo eliminado
+        fs.unlinkSync(__dirname + "/temps/" + req.files['dnidorso'][0].filename)//Archivo eliminado
     });
     let tlForm
     let promotorForm
@@ -713,16 +713,25 @@ app.post('/fisicas', function (req, res) {
 
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(2, 8)
-        .string('ID(BCO)')
+        .string('TELEFONO')
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(2, 9)
+        .string('MAIL')
+        .style(styleTITULOS);
+
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(2, 10)
+        .string('ID(BCO)')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(2, 11)
         .string('N° CTA CTE')
         .style(styleTITULOS);
 
 
     // Set value of cell C1 to a formula styled with paramaters of style
-    ws.cell(2, 10)
+    ws.cell(2, 12)
         .string('FECHA APERT')
         .style(styleTITULOS);
 
@@ -762,14 +771,23 @@ app.post('/fisicas', function (req, res) {
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(3, 8)
-        .string('')
+        .string(req.body.mcliente)
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
     ws.cell(3, 9)
+        .string(req.body.telefono)
+        .style(style);
+
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(3, 10)
         .string('')
         .style(style);
     // Set value of cell A2 to 'string' styled with paramaters of style
-    ws.cell(3, 10)
+    ws.cell(3, 11)
+        .string('')
+        .style(style);
+    // Set value of cell A2 to 'string' styled with paramaters of style
+    ws.cell(3, 12)
         .string('')
         .style(style);
 
@@ -809,14 +827,22 @@ app.post('/fisicas', function (req, res) {
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 8)
-        .string('Nro Establecimiento')
+        .string('MAIL')
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 9)
-        .string('Tipo de elemento')
+        .string('TELEFONO')
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(6, 10)
+        .string('Nro Establecimiento')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 11)
+        .string('Tipo de elemento')
+        .style(styleTITULOS);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(6, 12)
         .string('Ruta de acceso')
         .style(styleTITULOS);
     // Set value of cell C1 to a formula styled with paramaters of style
@@ -845,14 +871,22 @@ app.post('/fisicas', function (req, res) {
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(7, 8)
-        .string('')
+        .string(req.body.mcliente)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(7, 9)
-        .string('')
+        .string(req.body.telefono)
         .style(style);
     // Set value of cell C1 to a formula styled with paramaters of style
     ws.cell(7, 10)
+        .string('')
+        .style(style);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(7, 11)
+        .string('')
+        .style(style);
+    // Set value of cell C1 to a formula styled with paramaters of style
+    ws.cell(7, 12)
         .string('')
         .style(style);
 
@@ -886,6 +920,7 @@ app.post('/fisicas', function (req, res) {
     <li>Dirección: ${direcForm}</li>
     <li>Localidad: ${localidadForm}</li>
     <li>Numero de Telefono: ${tlForm}</li>
+    <li>Numero de Telefono: ${req.body.mcliente}</li>
     <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
     <li>Producto Ofrecido: ${req.body.productos}</li>
   </ul>
@@ -899,6 +934,7 @@ app.post('/fisicas', function (req, res) {
 <li>Dirección: ${direcForm}</li>
 <li>Localidad: ${localidadForm}</li>
 <li>Numero de Telefono: ${tlForm}</li>
+<li>Numero de Telefono: ${req.body.mcliente}</li>
 <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
 <li>Producto Ofrecido: ${req.body.productos}</li>
 </ul>
@@ -921,7 +957,7 @@ app.post('/fisicas', function (req, res) {
     // setup email data with unicode symbols
     let mailOptions = {
         from: `GESTION EN SUCURSAL <${req.body.mpromotor}>`, // sender address
-        to: `altas.railcom@gmail.com`, // list of receivers
+        to: `jesus.parra@railcom.com.ar`, // list of receivers altas.railcom@gmail.com
         subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: output, // html body
@@ -940,7 +976,7 @@ app.post('/fisicas', function (req, res) {
     });
     let mailVendedor = {
         from: `GESTION EN SUCURSAL <${req.body.mpromotor}>`, // sender address
-        to: req.body.mpromotor, // list of receivers
+        to: `${req.body.mpromotor}`, // list of receivers
         subject: `CC EN SUCURSAL ${req.body.razon}`, // Subject line
         text: 'Hello world?', // plain text body
         html: outputVendedor, // html body
