@@ -920,7 +920,7 @@ app.post('/fisicas', function (req, res) {
     <li>Dirección: ${direcForm}</li>
     <li>Localidad: ${localidadForm}</li>
     <li>Numero de Telefono: ${tlForm}</li>
-    <li>Numero de Telefono: ${req.body.mcliente}</li>
+    <li>Mail: ${req.body.mcliente}</li>
     <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
     <li>Producto Ofrecido: ${req.body.productos}</li>
   </ul>
@@ -934,7 +934,7 @@ app.post('/fisicas', function (req, res) {
 <li>Dirección: ${direcForm}</li>
 <li>Localidad: ${localidadForm}</li>
 <li>Numero de Telefono: ${tlForm}</li>
-<li>Numero de Telefono: ${req.body.mcliente}</li>
+<li>Mail: ${req.body.mcliente}</li>
 <li>Numero de Sucursal: ${req.body.n_sucursal}</li>
 <li>Producto Ofrecido: ${req.body.productos}</li>
 </ul>
