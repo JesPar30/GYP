@@ -497,8 +497,8 @@ app.post('/juridicas', cpUpload, function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'cartas@railcom.com.ar', // generated ethereal user
-            pass: 'Cartas2020!.'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Railcom2020.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -946,8 +946,8 @@ app.post('/fisicas', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'cartas@railcom.com.ar', // generated ethereal user
-            pass: 'Cartas2020!.'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Railcom2020.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
