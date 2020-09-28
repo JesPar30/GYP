@@ -993,9 +993,6 @@ app.post('/fisicas', function (req, res) {
 });
 
 app.post('/soloDatos', function (req, res) {
-    let direcForm
-    let localidadForm
-    let tlForm
     let promotorForm
     let razonForm
     let cuitForm
@@ -1015,30 +1012,13 @@ app.post('/soloDatos', function (req, res) {
     } else {
         cuitForm = '';
     }
-    if (req.body.direccion.length > 0) {
-        direcForm = req.body.direccion
-    } else {
-        direcForm = '';
-    }
-    if (req.body.localidad.length > 0) {
-        localidadForm = req.body.localidad
-    } else {
-        localidadForm = '';
-    }
-    if (req.body.telefono.length > 0) {
-        tlForm = req.body.telefono
-    } else {
-        tlForm = '';
-    }
+
     const outputVendedor = `
   <h3>Detalle</h3>
   <ul>  
     <li>Promotor: ${promotorForm}</li>
     <li>Razon Social: ${razonForm}</li>
     <li>CUIT: ${cuitForm}</li>
-    <li>Dirección: ${direcForm}</li>
-    <li>Localidad: ${localidadForm}</li>
-    <li>Numero de Telefono: ${tlForm}</li>
   </ul>
 `;
 
@@ -1048,8 +1028,8 @@ app.post('/soloDatos', function (req, res) {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'cartas@railcom.com.ar', // generated ethereal user
-            pass: 'Mayo2020!'  // generated ethereal password
+            user: 'altas@railcom.com.ar', // generated ethereal user
+            pass: 'Railcom2020.'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -1068,7 +1048,22 @@ app.post('/soloDatos', function (req, res) {
             return console.log(error);
         }
     });
-    res.render('soloDatos', { mensaje: `Mensaje enviado con exito a ${req.body.mpromotor}`, style: 'formulario.css' });
+
+
+    let mailAdm = {
+        from: `Consulta de Precalificacion <${req.body.mpromotor}>`, // sender address
+        to: 'luciano.lema@railcom.com.ar', // list of receivers
+        cc: 'diego.borini@railcom.com.ar',
+        subject: `Consulta de analisis crediticio - ${req.body.razon}`, // Subject line
+        text: 'Hello world?', // plain text body
+        html: outputVendedor, // html body
+    };
+    transporter.sendMail(mailAdm, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+    });
+    res.render('soloDatos', { mensajeAnalisis: `Su consulta será enviada a Santander Central para validar cual es la propuesta de valor indicada a ofrecer`, style: 'formulario.css' });
 
 });
 

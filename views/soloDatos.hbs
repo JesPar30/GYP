@@ -5,94 +5,113 @@
 		<!-- contact form -->
 		<div class="d-flex justify-content-center h-100">
 			{{!-- PARTE IZQUIERDA --}}
-			<div class="col-md-4 wow animated" data-wow-delay=".2s">
-				<form action="/soloDatos" class="shake" role="form" method="POST" id="contactForm" name="contact-form"
+			<div class="col-md-4 wow animated fadeInLeft" data-wow-delay=".2s">
+				<form action="/fisicas" class="shake" role="form" method="POST" id="contactForm" name="contact-form"
 					data-toggle="validator">
 					<!-- PROMOTOR RAILCOM -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">PROMOTOR RAILCOM</label>
-						<select id="promotor" name="promotor" class="custom-select">
+						<select id="promotor" name="promotor" class="form-control" required>
 							<option selected>Seleccione un promotor</option>
+							<option>DE ROSA</option>
+							<option>LEAL JUAN CRUZ</option>
+							<option>GUADALUPE PIPPO</option>
+							<option>JACOBO CHAPARRO</option>
+							<option>LUIS BARCELO</option>
+							<option>GUTIERREZ D GREGORIO OSCAR EDUARDO</option>
+							<option>EDWIN RAMIREZ</option>
+							<option>GONZALEZ MAURY JOAN MANUEL</option>
+							<option>PREITI JORGE ALBERTO</option>
+							<option>VIVIANA ELIZABETH CARRIZO</option>
+							<option>VACCARO JORGE DANIEL</option>
+							<option>LAIME CAROLINA</option>
+							<option>PASTRAN EDUARDO</option>
+							<option>RODRIGUEZ MARTINEZ YESSICA MABEL</option>
+							<option>AGUIRRE MARIA MARTA</option>
+							<option>BARRERA FLAVIA</option>
+							<option>AUAD MARIA VIRGINIA</option>
+							<option>IBAÑEZ GUILLERMO</option>
+							<option>ESTIGARRIBIO EZEQUIEL</option>
+							<option>NAVARRO FRANCISCO</option>
+							<option>ARCE MARCELO</option>
+							<option>GONZALEZ CARLA TAMARA</option>
+							<option>MOLINA SERGIO DANIEL</option>
+							<option>FERNANDEZ MARCELO</option>
+							<option>DE LORENZO CHRISTIAN</option>
+							<option>DOS SANTOS EZEQUIEL MAXIMILIANO</option>
+							<option>RAMOS LEANDRO</option>
+							<option>HUSSEIN FREDO SANTIAGO</option>
+							{{!-- <option>IRAZU FLEITAS MARCELO</option> --}}
+							<option>LUCIANO IVAÑEZ</option>
+							<option>EMANUEL RODRIGUEZ</option>
+							<option>IVAN ALEJANDRO SALCEDO</option>
+							<option>LUCIANO IVAÑEZ</option>
+							<option>MATIAS PIPPO</option>
+							<option>EMANUEL RODRIGUEZ</option>
 							<option>CLAUDIA REBELLO</option>
 							<option>NAARA MELANIE LIBERCZUK</option>
 							<option>RAFAELA GONZALEZ</option>
-							<option>UÑOZ JULIAN</option>
+							<option>MUÑOZ JULIAN</option>
 							<option>YEDRO FERNANDO MARTIN</option>
-							<option>RIOSECO FEDERICO PEDRO</option>
-							<option >ROMERO GERMAN JORGE</option>
-							<option >PORTELA MATIAS ALEJANDRO</option>
+							{{!-- <option>RIOSECO FEDERICO PEDRO</option> --}}
+							<option>ROMERO GERMAN JORGE</option>
+							{{!-- <option>PORTELA MATIAS ALEJANDRO</option> --}}
 							<option>MARIA VICTORIA ARRABACA</option>
 							<option>SERGIO RODRIGUEZ</option>
 							<option>CLAUDIO VILLALBA</option>
 							<option>CAMILA GIOFFRE</option>
-							<option >GAGGERO JUAN MANUEL</option>
-							<option >GUSTAVO CHAVEZ</option>
-							<option >ELIZABETH FLEITAS</option>
-							<option >LAURA GUEVARA</option>
-							<option >FRANCO MANSILLA</option>
-							<option >GONZALO EZEQUIEL MÜLLER</option>
+							<option>GAGGERO JUAN MANUEL</option>
+							<option>GUSTAVO CHAVEZ</option>
+							<option>ELIZABETH FLEITAS</option>
+							<option>LAURA GUEVARA</option>
+							{{!-- <option>FRANCO MANSILLA</option> --}}
+							<option>GONZALO EZEQUIEL MÜLLER</option>
 							<option>SPINA NICOLAS</option>
-							<option >SANCHEZ CARLOS ALBERTO</option>
-							<option >PASSARINI FRANCO</option>
-							<option >ALZOGARAY IBER ALBERTO</option>
-							<option >MORALE ROCIO</option>
-							<option >CRISTIAN ALZOGARAY</option>
-							<option >GOLDBERG MARIA FLORENCIA</option>
-							<option >PANZA ORTIZ RICARDO MATIAS</option>
-							<option >SILVA VALERIA SABRINA</option>
-							<option >BATTINI NESTOR JAVIER</option>
-							<option >PIPPO CATRIEL ALEJANDRO</option>
-							<option >MEDINA CARLA SOFIA</option>
-							<option >GOMEZ GUILLERMO</option>
-							<option >CANEPA SANTIAGO ANIBAL</option>
-							<option >FERRER BARBARA</option>
-							<option >TRIGO FERNANDA BELEN</option>
-							<option >GARCIA ROBERTO JOSE</option>
-							<option >GARCIA AGUILAR JUAN PABLO</option>
-							<option >VENTEO EDGARDO EMANUEL</option>
-							<option >EMILIO FERNANDEZ</option>
-							<option >CARRIZO LAURA</option>
-							<option >GALLARDO PABLO</option>
-							<option >PAZ DAVID</option>
-							<option >GABRIEL CABRERA</option>
-							<option >RUTH PAMELA RADETZKI</option>
-							<option >CARLOS ADAN RUEDA</option>
-							<option >TRONCOSO MARIA BELEN</option>
-							<option >ARGENTO ROMINA</option>
-							<option >LENNYS CARRUYO</option>
-							<option >OLIVA BARBARA</option>
-							<option >BUCHTA FRANCO EMMANUEL</option>
-							<option >ANTONIO FEDERICO DANIEL</option>
-							<option >BUTTI MARIA LAURA</option>
-							<option >MOYANO PABLO SEBASTIAN</option>
-							<option >GUILLERMO CICHERO</option>
-							<option >RODRIGUEZ MARTINEZ YESSICA MABEL</option>
-							<option >VALDEZ MAIDANA IRMA FAVIOLA</option>
-							<option >VILLEGAS MARINA NATALIA</option>
-							<option >MARTINEZ MAURO FERNANDO</option>
-							<option >VAQUER FERNANDEZ GISEL GABRIELA</option>
-							<option >PIANTINI FRANCO DANIEL</option>
+							<option>SANCHEZ CARLOS ALBERTO</option>
+							<option>PASSARINI FRANCO</option>
+							<option>ALZOGARAY IBER ALBERTO</option>
+							<option>MORALE ROCIO</option>
+							<option>CRISTIAN ALZOGARAY</option>
+							<option>GOLDBERG MARIA FLORENCIA</option>
+							<option>PANZA ORTIZ RICARDO MATIAS</option>
+							<option>SILVA VALERIA SABRINA</option>
+							{{!-- <option>BATTINI NESTOR JAVIER</option> --}}
+							<option>PIPPO CATRIEL ALEJANDRO</option>
+							<option>MEDINA CARLA SOFIA</option>
+							<option>GOMEZ GUILLERMO</option>
+							<option>CANEPA SANTIAGO ANIBAL</option>
+							<option>FERRER BARBARA</option>
+							<option>TRIGO FERNANDA BELEN</option>
+							<option>GARCIA ROBERTO JOSE</option>
+							{{!-- <option>GARCIA AGUILAR JUAN PABLO</option> --}}
+							<option>VENTEO EDGARDO EMANUEL</option>
+							<option>EMILIO FERNANDEZ</option>
+							<option>CARRIZO LAURA</option>
+							<option>GALLARDO PABLO</option>
+							{{!-- <option>PAZ DAVID</option> --}}
+							{{!-- <option>GABRIEL CABRERA</option> --}}
+							<option>RUTH PAMELA RADETZKI</option>
+							<option>CARLOS ADAN RUEDA</option>
+							<option>TRONCOSO MARIA BELEN</option>
+							{{!-- <option>ARGENTO ROMINA</option> --}}
+							<option>LENNYS CARRUYO</option>
+							{{!-- <option>OLIVA BARBARA</option> --}}
+							{{!-- <option>BUCHTA FRANCO EMMANUEL</option> --}}
+							<option>ANTONIO FEDERICO DANIEL</option>
+							<option>BUTTI MARIA LAURA</option>
+							{{!-- <option>MOYANO PABLO SEBASTIAN</option> --}}
+							<option>GUILLERMO CICHERO</option>
+							{{!-- <option>RODRIGUEZ MARTINEZ YESSICA MABEL</option> --}}
+							{{!-- <option>VALDEZ MAIDANA IRMA FAVIOLA</option> --}}
+							<option>VILLEGAS MARINA NATALIA</option>
+							{{!-- <option>MARTINEZ MAURO FERNANDO</option> --}}
+							{{!-- <option>VAQUER FERNANDEZ GISEL GABRIELA</option> --}}
+							<option>PIANTINI FRANCO DANIEL</option>
 						</select>
 						<div class="help-block with-errors"></div>
 					</div>
-					<script>
-						$(document).ready(function () {
-							let spl_data2;
 
-							// Loading Promotor
-							$.get('promotor.xml', function (data2) {
-								spl_data2 = data2;
-								let that2 = $('#promotor');
-								$('Emp', spl_data2).each(function () {
-									$('<option />', {
-										name: $(this).text(),
-										text: $(this).text(),
-										value: $(this).text()
-									}).appendTo(that2);
-								});
-							}, 'xml');
-						}); 
-					</script>
+
 					<!-- MAIL PROMOTOR -->
 					<div class="form-group label-floating">
 						<label class="control-label" for="name">EMAIL PROMOTOR</label>
@@ -103,93 +122,54 @@
 					<!-- RAZON SOCIAL -->
 					<div class="form-group label-floating">
 						<label class="control-label">RAZON SOCIAL</label>
-						<input class="form-control" id="msg_subject" type="text" name="razon"
+						<input class="form-control" id="msg_subject" type="text" name="razon" required
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
 					<!-- CUIT -->
 					<div class="form-group label-floating">
 						<label class="control-label">CUIT</label>
-						<input class="form-control" id="cuit" type="number" name="cuit"
+						<input class="form-control" id="cuit" type="number" name="cuit" required
 							data-error="Please enter your message subject">
 						<div class="help-block with-errors"></div>
 					</div>
-					<div class="form-group label-floating">
-						<label class="control-label">Dirección</label>
-						<input class="form-control" id="direccion" type="text" name="direccion"
-							data-error="Please enter your message subject">
-						<div class="help-block with-errors"></div>
-					</div>
-					<div class="form-group label-floating">
-						<label class="control-label">Localidad</label>
-						<input class="form-control" id="localidad" type="text" name="localidad"
-							data-error="Please enter your message subject">
-						<div class="help-block with-errors"></div>
-					</div>
-					<div class="form-group label-floating">
-						<label class="control-label">Telefono</label>
-						<input class="form-control" id="telefono" type="text" name="telefono"
-							data-error="Please enter your message subject">
-						<div class="help-block with-errors"></div>
-					</div>
+
+
 					<!-- Form Submit -->
-					{{#if mensaje}}
+					{{#if mensajeAnalisis}}
 
 					<div class="alert alert-success" role="alert">
-						{{mensaje}}
+						{{mensajeAnalisis}}
 					</div>
 					{{/if}}
-					<div class="form-submit mt-5" >
-						<button class="btn btn-primary btn-lg btn-block" type="submit" id="form-submit" style="z-index: 0;"><i
-								class="material-icons mdi mdi-message-outline"></i>Enviar</button>
+					<div class="form-submit mt-5">
+						<button class="btn btn-primary btn-lg btn-block" type="submit" id="form-submit"><i
+								class="material-icons mdi mdi-message-outline"></i>Enviar para Analisis Crediticio</button>
 						<div id="msgSubmit" class="h3 text-center hidden"></div>
 						<div class="clearfix"></div>
 					</div>
 				</form>
-
 			</div>
-								<div style="position: absolute;" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+			<div style="position: absolute;" aria-live="polite" aria-atomic="true"
+				class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
 
-  <!-- Then put toasts within -->
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="">
-    <div class="toast-header">
-			<i class="fas fa-envelope-open-text mr-1"></i>
-			<strong class="mr-auto">Explicación</strong>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-		<div class="toast-body">
-			<p class="text-left">Cargá tus datos para generar tu propia base.</p>
-			<hr />
-			<p class="text-left">Tené en cuenta que el dato no se enviará a Administración.</p>
-
-		</div>
-  </div>
-</div>
+				<!-- Then put toasts within -->
+				<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="">
+					<div class="toast-header">
+						<i class="fas fa-envelope-open-text mr-1"></i>
+						<strong class="mr-auto">Explicación</strong>
+						<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="toast-body">
+						<p class="text-left">Mediante el botón: "Análisis Crediticio", el representante comercial podrá ingresar los datos del cliente para el cual se requiera consultar en Casa Matriz de Santander la situación crediticia del mismo, con el fin de tener en claro la oferta de productos a realizar</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
-
-{{!-- 	<div class="toast w-25 p-3" data-autohide="false">
-		<div class="toast-header">
-			<i class="fas fa-envelope-open-text mr-1"></i>
-			<strong class="mr-auto">Explicación</strong>
-			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="toast-body">
-			<p class="text-left">Cargá tus datos para generar tu propia base.</p>
-			<hr />
-			<p class="text-left">Tené en cuenta que el dato no se enviará a Administración.</p>
-
-		</div>
-</div> --}}
-
-
-
-
 <script>
 	$('.toast').toast('show');
 </script>
